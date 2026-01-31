@@ -5,13 +5,13 @@ html {
 body {
   min-height: 100vh;
   margin: 0;
-  background-image: url('/assets/brick-wall2.png');
+  background-image: url("../assets/brick-wall.png");
   background-size: cover;
   position: relative;
 }
 
 body::after {
-  content: '';
+  content: "";
   position: absolute;
   top: 0;
   left: 0;

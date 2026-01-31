@@ -1,0 +1,77 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Rage Run - Instructions</title>
+    <link rel="stylesheet" href="../css/bootstrap.min.css" />
+    <link rel="stylesheet" href="../css/instructions.css" />
+    <link rel="stylesheet" href="../css/animations.css" />
+    <link rel="stylesheet" href="../css/fonts.css" />
+  </head>
+  <body
+    class="d-flex flex-column align-items-center justify-content-center overflow-hidden min-vh-100 gap-3 my-0"
+  >
+    <!-- header -->
+    <h1
+      class="display-6 fw-bold text-white animate-fade-up delay-1 animate-fade-up delay-1"
+    >
+      <span id="header-how">HOW</span> <span id="header-to-play">TO PLAY</span>
+    </h1>
+
+    <!-- instructions -->
+    <div
+      id="instructions-card"
+      class="d-flex flex-column gap-2 text-white animate-fade-up delay-2 my-0"
+    >
+      <!-- objective -->
+      <p>
+        <span class="fw-semibold">Objective:</span> Navigate through levels
+        without touching obstacles or enemies.
+      </p>
+
+      <!-- controls -->
+      <p>
+        <span class="fw-semibold">Controls:</span> Use arrow keys or WASD to
+        move up, down, left, and right.
+      </p>
+
+      <!-- rules -->
+      <span class="fw-semibold">Rules:</span>
+      <ul>
+        <li>Collect all required items before reaching the exit</li>
+        <li>Touching any obstacle resets the level</li>
+        <li>Master timing and precision to progress</li>
+        <li>Each level increases in difficulty</li>
+      </ul>
+
+      <p><span class="fw-semibold">Good luck!</span> You'll need it.</p>
+    </div>
+
+    <!-- back button -->
+    <a href="../" class="text-decoration-none animate-fade-up delay-3">
+      <button
+        class="btn-lg px-4 py-3 fw-semibold d-flex align-items-center justify-content-center text-white button gap-2"
+      >
+        <svg
+          xmlns="http://www.w3.org/2000/svg"
+          width="24"
+          height="24"
+          viewBox="0 0 24 24"
+          fill="none"
+          stroke="currentColor"
+          stroke-width="2"
+          stroke-linecap="round"
+          stroke-linejoin="round"
+          class="icon icon-tabler icons-tabler-outline icon-tabler-arrow-badge-left"
+        >
+          <path stroke="none" d="M0 0h24v24H0z" fill="none" />
+          <path d="M11 17h6l-4 -5l4 -5h-6l-4 5l4 5" />
+        </svg>
+        <span>Back to Menu</span>
+      </button>
+    </a>
+
+    <script src="../js/bootstrap.bundle.min.js"></script>
+  </body>
+</html>

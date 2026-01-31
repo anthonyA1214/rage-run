@@ -1,35 +1,184 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Rage Run</title>
-  <link rel="stylesheet" href="css/styles.css">
-  <link rel="stylesheet" href="css/bootstrap.min.css" />
-</head>
-<body>
-  <main>"
-    <div class="d-flex justify-content-center align-items-center vh-100">
-      <div id="container"></div>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Rage Run</title>
+    <link rel="stylesheet" href="css/bootstrap.min.css" />
+    <link rel="stylesheet" href="css/start-screen.css" />
+    <link rel="stylesheet" href="css/animations.css" />
+    <link rel="stylesheet" href="css/fonts.css" />
+  </head>
+
+  <body
+    class="d-flex align-items-center justify-content-center overflow-hidden min-vh-100"
+  >
+    <div
+      class="d-flex flex-column gap-4 align-items-center justify-content-center text-center"
+    >
+      <div class="d-flex flex-column">
+        <h1 class="display-1 fw-bold text-white animate-fade-up delay-1">
+          <span id="header-rage">RAGE</span> <span id="header-run">RUN</span>
+        </h1>
+        <h5 class="text-white animate-fade-up delay-2">
+          Master Your Reflexes. Conquer the Challenge.
+        </h5>
+      </div>
+      <!-- start button -->
+      <a href="./game" class="text-decoration-none animate-fade-up delay-3">
+        <button
+          id="start-button"
+          class="btn-lg px-4 py-3 fw-semibold d-flex align-items-center justify-content-between text-white button"
+        >
+          <div class="d-flex align-items-center gap-2">
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              width="24"
+              height="24"
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="2"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              class="icon icon-tabler icons-tabler-outline icon-tabler-player-play"
+            >
+              <path stroke="none" d="M0 0h24v24H0z" fill="none" />
+              <path d="M7 4v16l13 -8l-13 -8" />
+            </svg>
+            <span>Start Game</span>
+          </div>
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            width="24"
+            height="24"
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="currentColor"
+            stroke-width="2"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+            class="icon icon-tabler icons-tabler-outline icon-tabler-arrow-badge-right"
+          >
+            <path stroke="none" d="M0 0h24v24H0z" fill="none" />
+            <path d="M13 7h-6l4 5l-4 5h6l4 -5l-4 -5" />
+          </svg>
+        </button>
+      </a>
+
+      <!-- instructions button -->
+      <a
+        href="./instructions"
+        class="text-decoration-none animate-fade-up delay-4"
+      >
+        <button
+          id="instructions-button"
+          class="btn-lg text-white px-4 py-3 fw-semibold d-flex align-items-center justify-content-between button"
+        >
+          <div class="d-flex align-items-center gap-2">
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              width="24"
+              height="24"
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="2"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              class="icon icon-tabler icons-tabler-outline icon-tabler-book"
+            >
+              <path stroke="none" d="M0 0h24v24H0z" fill="none" />
+              <path d="M3 19a9 9 0 0 1 9 0a9 9 0 0 1 9 0" />
+              <path d="M3 6a9 9 0 0 1 9 0a9 9 0 0 1 9 0" />
+              <path d="M3 6l0 13" />
+              <path d="M12 6l0 13" />
+              <path d="M21 6l0 13" />
+            </svg>
+            <span>How to Play</span>
+          </div>
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            width="24"
+            height="24"
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="currentColor"
+            stroke-width="2"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+            class="icon icon-tabler icons-tabler-outline icon-tabler-arrow-badge-right"
+          >
+            <path stroke="none" d="M0 0h24v24H0z" fill="none" />
+            <path d="M13 7h-6l4 5l-4 5h6l4 -5l-4 -5" />
+          </svg></button
+      ></a>
+
+      <!-- high scores button -->
+      <a
+        href="./high-scores"
+        class="text-decoration-none animate-fade-up delay-5"
+      >
+        <button
+          id="instructions-button"
+          class="btn-lg text-white px-4 py-3 fw-semibold d-flex align-items-center justify-content-between button"
+        >
+          <div class="d-flex align-items-center gap-2">
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              width="24"
+              height="24"
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="2"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              class="icon icon-tabler icons-tabler-outline icon-tabler-trophy"
+            >
+              <path stroke="none" d="M0 0h24v24H0z" fill="none" />
+              <path d="M8 21l8 0" />
+              <path d="M12 17l0 4" />
+              <path d="M7 4l10 0" />
+              <path d="M17 4v8a5 5 0 0 1 -10 0v-8" />
+              <path d="M3 9a2 2 0 1 0 4 0a2 2 0 1 0 -4 0" />
+              <path d="M17 9a2 2 0 1 0 4 0a2 2 0 1 0 -4 0" />
+            </svg>
+            <span>High Scores</span>
+          </div>
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            width="24"
+            height="24"
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="currentColor"
+            stroke-width="2"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+            class="icon icon-tabler icons-tabler-outline icon-tabler-arrow-badge-right"
+          >
+            <path stroke="none" d="M0 0h24v24H0z" fill="none" />
+            <path d="M13 7h-6l4 5l-4 5h6l4 -5l-4 -5" />
+          </svg>
+        </button>
+      </a>
     </div>
-    
-  </main>
-  
-  <script src="js/bootstrap.bundle.min.js"></script>
-  <script src="js/p5.min.js"></script>
 
-  <!-- VARIABLE STATES -->
-  <script src="js/game/state.js"></script>
+    <!-- bottom stripes -->
+    <div
+      id="stripes"
+      class="position-absolute bottom-0 start-0 end-0 d-flex stripe-container"
+    >
+      <!-- 30 stripes -->
+      <div class="flex-fill stripe bg-dark"></div>
+      <div class="flex-fill stripe bg-warning"></div>
+      <div class="flex-fill stripe bg-dark"></div>
+      <div class="flex-fill stripe bg-warning"></div>
 
-  <!-- ENTITIES -->
-  <script src="js/game/entities/entity.js"></script>
-  <script src="js/game/entities/player.js"></script>
-
-  <!-- OBSTACLES -->
-  <script src="js/game/world/walls.js"></script>
-  <script src="js/game/world/levels/level1.js"></script>
-
-  <!-- GAME -->
-  <script src="js/game/sketch.js"></script>
-</body>
+      <!-- repeat -->
+    </div>
+    <script src="js/bootstrap.bundle.min.js"></script>
+    <script src="js/stripes.js"></script>
+  </body>
 </html>
