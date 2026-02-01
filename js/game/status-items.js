@@ -1,0 +1,53 @@
+// ========== DEATH COUNT =========
+function updateDeathCount() {
+  const deathCountElement = document.getElementById('death-count');
+
+  if (!deathCountElement) return;
+
+  let deathCount = Game.getDeathCount();
+
+  deathCountElement.textContent = `Deaths: ${deathCount}`;
+}
+
+let timeInSeconds = 0;
+let timerInterval = null;
+
+// =========== TIMER ============
+function updateTimer() {
+  const timeElement = document.getElementById('timer');
+  
+  if (!timeElement) return;
+
+  if (!Game.isPaused) {
+    timeInSeconds += 1;
+  }
+
+  const minutes = Math.floor(timeInSeconds / 60);
+  const seconds = timeInSeconds % 60;
+
+  timeElement.textContent = `${minutes}:${seconds.toString().padStart(2, '0')}`;
+}
+
+function startTimer() {
+  Game.isPaused = false;
+
+  if (!timerInterval) {
+    timerInterval = setInterval(updateTimer, 1000);
+  }
+}
+
+function pauseTimer() {
+  Game.isPaused = true;
+}
+
+
+// ============ ITEMS COLLECTED ============
+function updateOrbsCollected() {
+  const orbsElement = document.getElementById('orbs-collected');
+  
+  if (!orbsElement) return;
+
+  const totalOrbs = Game.getTotalOrbs();
+  orbsElement.textContent = `Items: ${Game.orbsCollected}/${totalOrbs}`;
+}
+
