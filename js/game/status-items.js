@@ -1,10 +1,21 @@
+// ========== LEVEL =========
+function updateLevel() {
+  const levelElement = document.getElementById('level-number');
+
+  if (!levelElement) return;
+
+  let levelNumber = Game.currentLevel;
+
+  levelElement.textContent = `Level ${levelNumber + 1}`;
+}
+
 // ========== DEATH COUNT =========
 function updateDeathCount() {
   const deathCountElement = document.getElementById('death-count');
 
   if (!deathCountElement) return;
 
-  let deathCount = Game.getDeathCount();
+  let deathCount = Game.deathCount;
 
   deathCountElement.textContent = `Deaths: ${deathCount}`;
 }
@@ -18,7 +29,7 @@ function updateTimer() {
   
   if (!timeElement) return;
 
-  if (!Game.isPaused) {
+  if (!Game.isGameFinished) {
     timeInSeconds += 1;
   }
 
@@ -29,17 +40,12 @@ function updateTimer() {
 }
 
 function startTimer() {
-  Game.isPaused = false;
+  Game.isGameFinished = false;
 
   if (!timerInterval) {
     timerInterval = setInterval(updateTimer, 1000);
   }
 }
-
-function pauseTimer() {
-  Game.isPaused = true;
-}
-
 
 // ============ ITEMS COLLECTED ============
 function updateOrbsCollected() {

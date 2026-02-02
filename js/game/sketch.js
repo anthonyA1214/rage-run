@@ -1,3 +1,10 @@
+let orbCollectedSound;
+
+function preload() {
+  soundFormats('mp3', 'ogg');
+  orbCollectedSound = loadSound('../../assets/sounds/arcade-ui-6-229503.mp3');
+}
+
 function setup() {
   let level = Game.getLevel();
   const canvas = createCanvas(level.cols * Game.cellSize, level.rows * Game.cellSize);
@@ -8,15 +15,18 @@ function setup() {
   startTimer();
   updateDeathCount();
   updateOrbsCollected();
+  updateLevel();
 }
 
 function draw() {
   background("#1E2939");
 
-  drawArena();
-  drawOrbs();
-  drawExit();
-  drawPlayer();
+  if (Game.isGameFinished === false) {
+    drawArena();
+    drawOrbs();
+    drawExit();
+    drawPlayer();
+  }
 }
 
 

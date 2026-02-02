@@ -43,6 +43,7 @@ function keyPressed() {
     player.y = newY;
 
     checkOrbCollection();
+    checkExit();
   }
 }
 
@@ -64,9 +65,21 @@ function checkOrbCollection() {
   
   level.orbs.forEach(orb => {
     if (!orb.collected && orb.x === player.x && orb.y === player.y) {
+      orbCollectedSound.setVolume(0.1);
+      orbCollectedSound.play();
       orb.collected = true;
       Game.orbsCollected++;
       updateOrbsCollected();
     }
   });
+}
+
+function checkExit() {
+  let level = Game.getLevel();
+  let exit = level.exit;
+
+  if (player.x === exit.x && player.y === exit.y && Game.allOrbsCollected()) {
+    Game.nextLevel();
+    updateLevel();
+  }
 }

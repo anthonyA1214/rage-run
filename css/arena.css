@@ -1,0 +1,20 @@
+.status-bar {
+  background-color: rgba(0, 0, 0, 0.5);
+  padding: 10px 20px;
+  border-radius: 8px;
+}
+
+#reset-button {
+  background-color: #ffc107;
+  border: 0;
+  border-radius: 10px;
+  transition: transform 0.2s ease;
+}
+
+#reset-button:hover {
+  transform: scale(1.05);
+}
+
+#reset-button:active {
+  transform: scale(0.95);
+}
