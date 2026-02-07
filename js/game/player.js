@@ -1,16 +1,48 @@
 let player;
+let playerMoving = false;
+let movementProgress = 0;
+let movementSpeed = 0.25; // Adjust this value to make movement faster or slower
+let targetX, targetY;
 
 function initPlayer() {
   const start = Game.getLevel().playerStart;
   player = { x: start.x, y: start.y };
+  targetX = player.x;
+  targetY = player.y;
+}
+
+function updatePlayer() {
+  if (playerMoving) {
+    movementProgress += movementSpeed;
+    
+    if (movementProgress >= 1) {
+      player.x = targetX;
+      player.y = targetY;
+      playerMoving = false;
+      movementProgress = 0;
+
+      checkOrbCollection();
+      checkExit();
+      checkEnemyCollision();
+    }
+  }
 }
 
 function drawPlayer() {
   fill('#00BEDA');
   
+  let currentX = player.x;
+  let currentY = player.y;
+  
+  if (playerMoving) {
+    let t = easeInOutQuad(movementProgress);
+    currentX = player.x + (targetX - player.x) * t;
+    currentY = player.y + (targetY - player.y) * t;
+  }
+
   // Draw circle in center of cell
-  let centerX = player.x * Game.cellSize + Game.cellSize / 2;
-  let centerY = player.y * Game.cellSize + Game.cellSize / 2;
+  let centerX = currentX * Game.cellSize + Game.cellSize / 2;
+  let centerY = currentY * Game.cellSize + Game.cellSize / 2;
   let size = Game.cellSize * 0.55; // 55% of cell size
   let radius = size * 0.3;
 
@@ -22,7 +54,13 @@ function drawPlayer() {
   drawingContext.shadowBlur = 0;
 }
 
+function easeInOutQuad(t) {
+  return t < 0.5 ? 2 * t * t : -1 + (4 - 2 * t) * t;
+}
+
 function keyPressed() {
+  if (playerMoving) return;
+
   let newX = player.x;
   let newY = player.y;
   
@@ -39,12 +77,11 @@ function keyPressed() {
   
   // Check collision before moving
   if (!isWall(newX, newY)) {
-    player.x = newX;
-    player.y = newY;
+    targetX = newX;
+    targetY = newY;
 
-    checkOrbCollection();
-    checkExit();
-    checkEnemyCollision();
+    playerMoving = true;
+    movementProgress = 0;
   }
 }
 
@@ -59,28 +96,4 @@ function isWall(x, y) {
   
   // Check if there's a wall at this position
   return level.arena[index] === 1;
-}
-
-function checkOrbCollection() {
-  let level = Game.getLevel();
-  
-  level.orbs.forEach(orb => {
-    if (!orb.collected && orb.x === player.x && orb.y === player.y) {
-      orbCollectedSound.setVolume(0.1);
-      orbCollectedSound.play();
-      orb.collected = true;
-      Game.orbsCollected++;
-      updateOrbsCollected();
-    }
-  });
-}
-
-function checkExit() {
-  let level = Game.getLevel();
-  let exit = level.exit;
-
-  if (player.x === exit.x && player.y === exit.y && Game.allOrbsCollected()) {
-    Game.nextLevel();
-    updateLevel();
-  }
 }

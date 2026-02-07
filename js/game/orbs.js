@@ -16,3 +16,17 @@ function drawOrbs() {
     }
   });
 }
+
+function checkOrbCollection() {
+  let level = Game.getLevel();
+  
+  level.orbs.forEach(orb => {
+    if (!orb.collected && orb.x === player.x && orb.y === player.y) {
+      orbCollectedSound.setVolume(1);
+      orbCollectedSound.play();
+      orb.collected = true;
+      Game.orbsCollected++;
+      updateOrbsCollected();
+    }
+  });
+}

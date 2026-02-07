@@ -40,8 +40,6 @@ function updateTimer() {
 }
 
 function startTimer() {
-  Game.isGameFinished = false;
-
   if (!timerInterval) {
     timerInterval = setInterval(updateTimer, 1000);
   }

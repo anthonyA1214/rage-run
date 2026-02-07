@@ -31,18 +31,20 @@ const Game = {
   },
 
   resetLevel() {
+    let level = this.getLevel();
     this.orbsCollected = 0;
 
-    const start = this.getLevel().playerStart;
-    player.x = start.x;
-    player.y = start.y;
+    player.x = level.playerStart.x;
+    player.y = level.playerStart.y;
+    targetX = player.x;
+    targetY = player.y;
+    playerMoving = false;
+    movementProgress = 0;
 
     this.deathCount++;
     updateDeathCount();
     updateOrbsCollected();
 
-
-    let level = this.getLevel();
 
     // reset orbs
     level.orbs.forEach(orb => orb.collected = false);
@@ -52,7 +54,6 @@ const Game = {
       if (enemy.type === 'patrol') {
         enemy.x = enemy.start.x;
         enemy.y = enemy.start.y;
-        enemy.lastMove = millis(); // Initialize with current time
         // Set initial direction based on start/end points
         if (enemy.start.x !== enemy.end.x) {
           enemy.direction = { x: 1, y: 0 };
@@ -64,7 +65,14 @@ const Game = {
         // Here, we'll reset them to their initial position
         enemy.x = enemy.start.x;
         enemy.y = enemy.start.y;
-        enemy.lastMove = millis();
+      } else if (enemy.type === 'charger') {        
+        enemy.x = enemy.start.x;
+        enemy.y = enemy.start.y;
+        enemy.state = 'idle';
+        enemy.chargeDirection = null;
+        enemy.targetX = null;
+        enemy.targetY = null;
+        enemy.stateStartTime = millis();
       }
     });
   },

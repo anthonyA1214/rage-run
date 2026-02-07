@@ -1,8 +1,14 @@
 let orbCollectedSound;
 
+const basePath = location.hostname.includes('github.io')
+  ? '/rage-run/'
+  : '/';
+
 function preload() {
   soundFormats('mp3', 'ogg');
-  orbCollectedSound = loadSound('../../assets/sounds/arcade-ui-6-229503.mp3');
+  orbCollectedSound = loadSound(
+    basePath + 'assets/sounds/arcade-ui-6-229503.mp3'
+  );
 }
 
 function setup() {
@@ -21,16 +27,21 @@ function setup() {
 function draw() {
   background("#1E2939");
   noStroke();
+
   if (Game.isGameFinished === false) {
+    updatePlayer();
     updateEnemies();
 
     drawArena();
     drawOrbs();
-    drawEnemies();
     drawExit();
     drawPlayer();
-
+    drawEnemies();
+    
     checkEnemyCollision();
+  } else {
+    showGameCompleteOverlay();
+    drawPlayer();
   }
 }
 

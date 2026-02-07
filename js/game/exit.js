@@ -10,6 +10,7 @@ function drawExit() {
   } else {
     fill(80); // Gray
   }
+  noStroke();
   rect(exit.x * Game.cellSize, exit.y * Game.cellSize, Game.cellSize, Game.cellSize);
   
   // Draw inner square with pulsing glow
@@ -24,6 +25,7 @@ function drawExit() {
     drawingContext.shadowBlur = glow;
     drawingContext.shadowColor = '#96FF96';
 
+    noStroke();
     rect(
       exit.x * Game.cellSize + padding,
       exit.y * Game.cellSize + padding,
@@ -32,6 +34,7 @@ function drawExit() {
     );
   } else {
     fill(120);
+    noStroke();
     rect(
       exit.x * Game.cellSize + padding,
       exit.y * Game.cellSize + padding,
@@ -41,4 +44,14 @@ function drawExit() {
   }
 
   drawingContext.shadowBlur = 0; // reset
+}
+
+function checkExit() {
+  let level = Game.getLevel();
+  let exit = level.exit;
+
+  if (player.x === exit.x && player.y === exit.y && Game.allOrbsCollected()) {
+    Game.nextLevel();
+    updateLevel();
+  }
 }

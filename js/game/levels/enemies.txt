@@ -1,0 +1,37 @@
+========== PATROL ==========
+
+{
+  type: 'patrol',
+  x: 5,
+  y: 11,
+  direction: { x: 1, y: 0 },
+  start: { x: 1, y: 11 },
+  end: { x: 11, y: 11 },
+  speed: 100
+},
+
+
+
+========== CHASER ==========
+
+{
+  type: 'chaser',
+  start: { x: 19, y: 1 },
+  x: 19,
+  y: 1,
+  speed: 25  // chasers move slower
+},
+
+
+
+========== CHARGER ==========
+
+{
+  type: 'charger',
+  x: 6,
+  y: 5,
+  speed: 150,  // Speed during charge
+  teleportInterval: 3000,  // Teleport every 3 seconds
+  aimDuration: 800  // Aim for 0.8 seconds before charging
+}
+

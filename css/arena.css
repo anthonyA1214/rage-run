@@ -18,3 +18,35 @@
 #reset-button:active {
   transform: scale(0.95);
 }
+
+.overlay {
+  background: rgba(0, 0, 0, 0.6); /* semi-transparent dark */
+  z-index: 100; /* above everything */
+}
+
+.overlay-content {
+  background-color: #171e2c;
+  border: 5px solid #4a5565;
+}
+
+#overlay-icon {
+  filter: drop-shadow(0 0 10px #ffd700);
+  color: #ffd700;
+  width: 10em;
+  height: 10em;
+}
+
+#overlay-title {
+  /* gradient text from gold to orange */
+  background: linear-gradient(to right, #ffd700, #e26002);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+
+  /* optional but nice */
+  background-clip: text;
+}
+
+#back-to-menu-button {
+  background-color: #ffc107;
+  border: 0;
+}
