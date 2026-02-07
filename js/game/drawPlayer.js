@@ -44,6 +44,7 @@ function keyPressed() {
 
     checkOrbCollection();
     checkExit();
+    checkEnemyCollision();
   }
 }
 

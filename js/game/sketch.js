@@ -20,12 +20,17 @@ function setup() {
 
 function draw() {
   background("#1E2939");
-
+  noStroke();
   if (Game.isGameFinished === false) {
+    updateEnemies();
+
     drawArena();
     drawOrbs();
+    drawEnemies();
     drawExit();
     drawPlayer();
+
+    checkEnemyCollision();
   }
 }
 
