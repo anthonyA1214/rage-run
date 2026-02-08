@@ -46,7 +46,7 @@ const level18 = {
       centerY: 8,
       radius: 3.5,
       orbitSpeed: 2.5,  // Slower
-      angle: 0
+      startAngle: 0
     },
     {
       type: 'orbiter',
@@ -57,7 +57,7 @@ const level18 = {
       centerY: 8,
       radius: 3.5,
       orbitSpeed: 2.5,  // Slower
-      angle: 180
+      startAngle: 180
     },
     
     // Single corner orbiter (top-left area)
@@ -70,7 +70,7 @@ const level18 = {
       centerY: 4,
       radius: 2,
       orbitSpeed: 3.5,
-      angle: 0
+      startAngle: 0
     },
     
     // Single corner orbiter (bottom-right area)
@@ -83,7 +83,7 @@ const level18 = {
       centerY: 12,
       radius: 2,
       orbitSpeed: -3.5,
-      angle: 90
+      startAngle: 90
     },
     
     // Charger - slower and less frequent

@@ -38,7 +38,7 @@ function draw() {
     drawPlayer();
     drawEnemies();
     
-    checkEnemyCollision();
+    // checkEnemyCollision();
   } else {
     showGameCompleteOverlay();
     drawPlayer();

@@ -42,7 +42,7 @@ const level16 = {
       centerY: 7,
       radius: 2.5,
       orbitSpeed: 5,
-      angle: 0
+      startAngle: 0
     },
     {
       type: 'orbiter',
@@ -53,7 +53,7 @@ const level16 = {
       centerY: 7,
       radius: 2.5,
       orbitSpeed: -5,
-      angle: 180
+      startAngle: 180
     },
     
     // Two patrols - horizontal corridors (opposite directions)

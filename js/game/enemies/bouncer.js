@@ -78,3 +78,51 @@ function drawBouncer(enemy, centerX, centerY) {
   drawingContext.shadowBlur = 0;
   colorMode(RGB);
 }
+
+// function updateBouncerEnemy(enemy) {
+//   let moveAmount = (enemy.speed / 1000);
+//   let level = Game.getLevel();
+//   let radiusCells = (level.cellSize * 0.7) / 2 / level.cellSize;
+  
+//   // Calculate next position
+//   let newX = enemy.x + enemy.direction.x * moveAmount;
+//   let newY = enemy.y + enemy.direction.y * moveAmount;
+//   let centerX = newX + 0.5;
+//   let centerY = newY + 0.5;
+  
+//   // Check collision with walls
+//   let hitWall = false;
+//   let isWallAtPoint = (x, y) => isWall(Math.floor(x), Math.floor(y));
+//   let testPoints = [
+//     [centerX - radiusCells, centerY],
+//     [centerX + radiusCells, centerY],
+//     [centerX, centerY - radiusCells],
+//     [centerX, centerY + radiusCells],
+//     [centerX - radiusCells, centerY - radiusCells],
+//     [centerX + radiusCells, centerY - radiusCells],
+//     [centerX - radiusCells, centerY + radiusCells],
+//     [centerX + radiusCells, centerY + radiusCells]
+//   ];
+  
+//   for (let i = 0; i < testPoints.length; i++) {
+//     let point = testPoints[i];
+//     if (isWallAtPoint(point[0], point[1])) {
+//       hitWall = true;
+//       break;
+//     }
+//   }
+  
+//   if (hitWall) {
+//     // Bounce in a random new direction
+//     let angle = random(TWO_PI);
+//     enemy.direction.x = cos(angle);
+//     enemy.direction.y = sin(angle);
+    
+//     // Flash brighter when bouncing
+//     enemy.lastBounce = millis();
+//   } else {
+//     // Continue moving
+//     enemy.x = newX;
+//     enemy.y = newY;
+//   }
+// }

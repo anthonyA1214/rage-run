@@ -41,8 +41,8 @@ const level17 = {
       centerX: 5,
       centerY: 6,
       radius: 2,
-      orbitSpeed: 6,
-      angle: 0
+      orbitSpeed: -5,
+      startAngle: 90
     },
     {
       type: 'orbiter',
@@ -52,8 +52,8 @@ const level17 = {
       centerX: 5,
       centerY: 6,
       radius: 2,
-      orbitSpeed: -6,
-      angle: 180
+      orbitSpeed: 5,
+      startAngle: 270
     },
     {
       type: 'orbiter',
@@ -64,7 +64,7 @@ const level17 = {
       centerY: 6,
       radius: 2,
       orbitSpeed: 5,
-      angle: 90
+      startAngle: 90
     },
     {
       type: 'orbiter',
@@ -75,7 +75,7 @@ const level17 = {
       centerY: 6,
       radius: 2,
       orbitSpeed: -5,
-      angle: 270
+      startAngle: 270
     },
     
     // Additional orbiter in center
@@ -88,7 +88,7 @@ const level17 = {
       centerY: 6,
       radius: 1.5,
       orbitSpeed: 7,
-      angle: 45
+      startAngle: 45
     },
     
     // Charger with faster intervals

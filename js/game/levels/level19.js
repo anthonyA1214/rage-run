@@ -45,7 +45,7 @@ const level19 = {
       centerY: 4,
       radius: 2,
       orbitSpeed: 6,
-      angle: 0
+      startAngle: 0
     },
     {
       type: 'orbiter',
@@ -56,7 +56,7 @@ const level19 = {
       centerY: 4,
       radius: 2,
       orbitSpeed: -5,
-      angle: 120
+      startAngle: 120
     },
     {
       type: 'orbiter',
@@ -67,7 +67,7 @@ const level19 = {
       centerY: 4,
       radius: 2,
       orbitSpeed: 5,
-      angle: 60
+      startAngle: 60
     },
     {
       type: 'orbiter',
@@ -78,7 +78,7 @@ const level19 = {
       centerY: 4,
       radius: 2,
       orbitSpeed: -6,
-      angle: 240
+      startAngle: 240
     },
     {
       type: 'orbiter',
@@ -89,7 +89,7 @@ const level19 = {
       centerY: 10,
       radius: 2.5,
       orbitSpeed: 4,
-      angle: 180
+      startAngle: 180
     },
     
     // Additional orbiter at center
@@ -102,7 +102,7 @@ const level19 = {
       centerY: 7,
       radius: 1.8,
       orbitSpeed: 7,
-      angle: 90
+      startAngle: 90
     },
     
     // Three chasers instead of two (faster)
