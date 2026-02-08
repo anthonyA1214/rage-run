@@ -8,9 +8,9 @@ function drawOrbs() {
 
       fill(255, 215, 0, alpha);
 
-      let centerX = orb.x * Game.cellSize + Game.cellSize / 2;
-      let centerY = orb.y * Game.cellSize + Game.cellSize / 2;
-      let diameter = Game.cellSize * 0.35;
+      let centerX = orb.x * level.cellSize + level.cellSize / 2;
+      let centerY = orb.y * level.cellSize + level.cellSize / 2;
+      let diameter = level.cellSize * 0.35;
       
       circle(centerX, centerY, diameter);
     }

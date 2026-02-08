@@ -28,15 +28,16 @@ function updateOrbiterEnemy(enemy) {
 }
 
 function drawOrbiter(enemy, centerX, centerY) {
-  let size = Game.cellSize * 0.65;
+  let level = Game.getLevel();
+  let size = level.cellSize * 0.65;
   
   // Draw orbit path (faint circle showing the orbit)
   noFill();
   stroke(255, 165, 0, 80); // Orange, semi-transparent
   strokeWeight(1);
-  let orbitCenterX = enemy.centerX * Game.cellSize + Game.cellSize / 2;
-  let orbitCenterY = enemy.centerY * Game.cellSize + Game.cellSize / 2;
-  let orbitRadius = enemy.currentRadius * Game.cellSize;
+  let orbitCenterX = enemy.centerX * level.cellSize + level.cellSize / 2;
+  let orbitCenterY = enemy.centerY * level.cellSize + level.cellSize / 2;
+  let orbitRadius = enemy.currentRadius * level.cellSize;
   circle(orbitCenterX, orbitCenterY, orbitRadius * 2);
   noStroke();
   

@@ -1,7 +1,8 @@
 const level13 = {
   cols: 11,
-  rows: 20,
-
+  rows: 20, 
+  cellSize: 40,
+  
   arena: [
     1,1,1,1,1,1,1,1,1,1,1,
     1,0,0,0,0,0,0,0,0,0,1,
@@ -86,9 +87,27 @@ const level13 = {
       type: 'patrol',
       direction: { x: 0, y: 1 },
       start: { x: 5, y: 1 },
-      end: { x: 5, y: 18 },
+      end: { x: 5, y: 3 },
       x: 5,
       y: 1,
+      speed: 45,
+    },
+    {
+      type: 'patrol',
+      direction: { x: 1, y: 0 },
+      start: { x: 1, y: 8 },
+      end: { x: 9, y: 8 },
+      x: 1,
+      y: 8,
+      speed: 70,
+    },
+    {
+      type: 'patrol',
+      direction: { x: 0, y: -1 },
+      start: { x: 5, y: 18 },
+      end: { x: 5, y: 16 },
+      x: 5,
+      y: 18,
       speed: 45,
     },
   ],

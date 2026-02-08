@@ -13,11 +13,12 @@ function updatePatrolEnemy(enemy, moveAmount) {
 
 function drawPatrol(enemy, centerX, centerY) {
   fill('#EF4444');
+  let level = Game.getLevel();
 
   drawingContext.shadowBlur = 20;
   drawingContext.shadowColor = '#EF4444';
 
-  ellipse(centerX, centerY, Game.cellSize * 0.75);
+  ellipse(centerX, centerY, level.cellSize * 0.75);
 
   drawingContext.shadowBlur = 0;
 }

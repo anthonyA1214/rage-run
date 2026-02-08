@@ -39,7 +39,8 @@ function updateBouncerEnemy(enemy) {
 }
 
 function drawBouncer(enemy, centerX, centerY) {
-  let size = Game.cellSize * 0.7;
+  let level = Game.getLevel();
+  let size = level.cellSize * 0.7;
   
   // Color shifts based on movement direction
   let hue = (atan2(enemy.direction.y, enemy.direction.x) + PI) / TWO_PI;

@@ -13,7 +13,7 @@ function preload() {
 
 function setup() {
   let level = Game.getLevel();
-  const canvas = createCanvas(level.cols * Game.cellSize, level.rows * Game.cellSize);
+  const canvas = createCanvas(level.cols * level.cellSize, level.rows * level.cellSize);
   canvas.parent("container");
 
   initPlayer();

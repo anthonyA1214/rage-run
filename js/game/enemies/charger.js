@@ -77,12 +77,13 @@ function teleportChargerNearPlayer(enemy) {
 // drawwww!!!!!
 
 function drawCharger(enemy, centerX, centerY) {
-  let size = Game.cellSize * 0.7;
+  let level = Game.getLevel();
+  let size = level.cellSize * 0.7;
 
   let angle = 0;
   if (enemy.targetX !== undefined) {
-    let tx = enemy.targetX * Game.cellSize + Game.cellSize / 2;
-    let ty = enemy.targetY * Game.cellSize + Game.cellSize / 2;
+    let tx = enemy.targetX * level.cellSize + level.cellSize / 2;
+    let ty = enemy.targetY * level.cellSize + level.cellSize / 2;
     angle = atan2(ty - centerY, tx - centerX) + HALF_PI;
   }
 
@@ -112,8 +113,8 @@ function drawCharger(enemy, centerX, centerY) {
     line(
       centerX, 
       centerY,
-      enemy.targetX * Game.cellSize + Game.cellSize / 2,
-      enemy.targetY * Game.cellSize + Game.cellSize / 2
+      enemy.targetX * level.cellSize + level.cellSize / 2,
+      enemy.targetY * level.cellSize + level.cellSize / 2
     );
   } else if (enemy.state === 'charging') {
     // Bright cyan when charging

@@ -1,7 +1,8 @@
 const level19 = {
   cols: 18,
   rows: 15,
-
+  cellSize: 40,
+  
   arena: [
     1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,
     1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,
@@ -142,7 +143,7 @@ const level19 = {
       x: 9,
       y: 13,
       direction: { x: 0, y: -1 },
-      start: { x: 9, y: 8 },
+      start: { x: 9, y: 9 },
       end: { x: 9, y: 13 },
       speed: 90
     },
@@ -154,8 +155,18 @@ const level19 = {
       y: 7,
       direction: { x: 1, y: 0 },
       start: { x: 1, y: 7 },
-      end: { x: 16, y: 7 },
-      speed: 85
+      end: { x: 7, y: 7 },
+      speed: 42.5
+    },
+
+    {
+      type: 'patrol',
+      x: 16,
+      y: 7,
+      direction: { x: -1, y: 0 },
+      start: { x: 16, y: 7 },
+      end: { x: 10, y: 7 },
+      speed: 42.5
     },
     
     // Charger for extra chaos

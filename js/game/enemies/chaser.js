@@ -10,7 +10,8 @@ function updateChaserEnemy(enemy, moveAmount) {
 
 function drawChaser(enemy, centerX, centerY) {
   fill('#A855F7');
-  let size = Game.cellSize * 0.75;
+  let level = Game.getLevel();
+  let size = level.cellSize * 0.75;
   
   let dx = player.x - enemy.x;
   let dy = player.y - enemy.y;

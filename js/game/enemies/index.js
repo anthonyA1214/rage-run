@@ -27,8 +27,8 @@ function drawEnemies() {
   if (!level.enemies) return;
 
   level.enemies.forEach(enemy => {
-    let centerX = enemy.x * level.cellSize + Game.cellSize / 2;
-    let centerY = enemy.y * Game.cellSize + Game.cellSize / 2;
+    let centerX = enemy.x * level.cellSize + level.cellSize / 2;
+    let centerY = enemy.y * level.cellSize + level.cellSize / 2;
 
     noStroke();
     if (enemy.type === 'patrol') {

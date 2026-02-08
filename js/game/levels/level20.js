@@ -1,7 +1,7 @@
 const level20 = {
   cols: 25,
   rows: 21,
-
+  cellSize: 30,
   arena: [
     1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,
     1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,
@@ -42,9 +42,7 @@ const level20 = {
   ],
 
   enemies: [
-    // === ORBITERS ===
-    
-    // Large central orbiter system - the main challenge
+    // === ORBITERS - OUTER RING (4 enemies) ===
     {
       type: 'orbiter',
       start: { x: 12, y: 10 },
@@ -52,8 +50,8 @@ const level20 = {
       y: 10,
       centerX: 12,
       centerY: 10,
-      radius: 5,
-      orbitSpeed: 2.8,
+      radius: 5.5,
+      orbitSpeed: 3.0,
       angle: 0
     },
     {
@@ -63,8 +61,8 @@ const level20 = {
       y: 10,
       centerX: 12,
       centerY: 10,
-      radius: 5,
-      orbitSpeed: 2.8,
+      radius: 5.5,
+      orbitSpeed: 3.0,
       angle: 90
     },
     {
@@ -74,8 +72,8 @@ const level20 = {
       y: 10,
       centerX: 12,
       centerY: 10,
-      radius: 5,
-      orbitSpeed: 2.8,
+      radius: 5.5,
+      orbitSpeed: 3.0,
       angle: 180
     },
     {
@@ -85,12 +83,12 @@ const level20 = {
       y: 10,
       centerX: 12,
       centerY: 10,
-      radius: 5,
-      orbitSpeed: 2.8,
+      radius: 5.5,
+      orbitSpeed: 3.0,
       angle: 270
     },
     
-    // Inner ring - faster, opposite direction
+    // === ORBITERS - MIDDLE RING (3 enemies, opposite direction) ===
     {
       type: 'orbiter',
       start: { x: 12, y: 10 },
@@ -98,9 +96,9 @@ const level20 = {
       y: 10,
       centerX: 12,
       centerY: 10,
-      radius: 3,
-      orbitSpeed: -4,
-      angle: 45
+      radius: 3.5,
+      orbitSpeed: -4.5,
+      angle: 0
     },
     {
       type: 'orbiter',
@@ -109,12 +107,49 @@ const level20 = {
       y: 10,
       centerX: 12,
       centerY: 10,
-      radius: 3,
-      orbitSpeed: -4,
-      angle: 135
+      radius: 3.5,
+      orbitSpeed: -4.5,
+      angle: 120
+    },
+    {
+      type: 'orbiter',
+      start: { x: 12, y: 10 },
+      x: 12,
+      y: 10,
+      centerX: 12,
+      centerY: 10,
+      radius: 3.5,
+      orbitSpeed: -4.5,
+      angle: 240
     },
     
-    // Top-left quadrant orbiter
+    // === ORBITERS - INNER RING (2 enemies, fast) ===
+    {
+      type: 'orbiter',
+      start: { x: 12, y: 10 },
+      x: 12,
+      y: 10,
+      centerX: 12,
+      centerY: 10,
+      radius: 2,
+      orbitSpeed: 5.5,
+      angle: 0
+    },
+    {
+      type: 'orbiter',
+      start: { x: 12, y: 10 },
+      x: 12,
+      y: 10,
+      centerX: 12,
+      centerY: 10,
+      radius: 2,
+      orbitSpeed: 5.5,
+      angle: 180
+    },
+    
+    // === QUADRANT ORBITERS (one per quadrant) ===
+    
+    // Top-left quadrant
     {
       type: 'orbiter',
       start: { x: 6, y: 5 },
@@ -123,11 +158,11 @@ const level20 = {
       centerX: 6,
       centerY: 5,
       radius: 2.5,
-      orbitSpeed: 3.5,
+      orbitSpeed: 3.8,
       angle: 0
     },
     
-    // Top-right quadrant orbiter
+    // Top-right quadrant
     {
       type: 'orbiter',
       start: { x: 18, y: 5 },
@@ -136,11 +171,11 @@ const level20 = {
       centerX: 18,
       centerY: 5,
       radius: 2.5,
-      orbitSpeed: -3.5,
+      orbitSpeed: -3.8,
       angle: 90
     },
     
-    // Bottom-left quadrant orbiter
+    // Bottom-left quadrant
     {
       type: 'orbiter',
       start: { x: 6, y: 15 },
@@ -149,11 +184,11 @@ const level20 = {
       centerX: 6,
       centerY: 15,
       radius: 2.5,
-      orbitSpeed: 3.5,
+      orbitSpeed: 3.8,
       angle: 180
     },
     
-    // Bottom-right quadrant orbiter
+    // Bottom-right quadrant
     {
       type: 'orbiter',
       start: { x: 18, y: 15 },
@@ -162,7 +197,7 @@ const level20 = {
       centerX: 18,
       centerY: 15,
       radius: 2.5,
-      orbitSpeed: -3.5,
+      orbitSpeed: -3.8,
       angle: 270
     },
     
@@ -172,11 +207,11 @@ const level20 = {
     {
       type: 'patrol',
       x: 3,
-      y: 3,
+      y: 4,
       direction: { x: 1, y: 0 },
-      start: { x: 3, y: 3 },
-      end: { x: 21, y: 3 },
-      speed: 75
+      start: { x: 3, y: 4 },
+      end: { x: 21, y: 4 },
+      speed: 85
     },
     
     // Bottom horizontal patrol
@@ -187,7 +222,7 @@ const level20 = {
       direction: { x: -1, y: 0 },
       start: { x: 3, y: 17 },
       end: { x: 21, y: 17 },
-      speed: 75
+      speed: 85
     },
     
     // Left vertical patrol
@@ -198,7 +233,7 @@ const level20 = {
       direction: { x: 0, y: 1 },
       start: { x: 3, y: 5 },
       end: { x: 3, y: 15 },
-      speed: 70
+      speed: 80
     },
     
     // Right vertical patrol
@@ -209,10 +244,10 @@ const level20 = {
       direction: { x: 0, y: -1 },
       start: { x: 21, y: 5 },
       end: { x: 21, y: 15 },
-      speed: 70
+      speed: 80
     },
     
-    // Middle horizontal patrol
+    // Middle horizontal patrols (3)
     {
       type: 'patrol',
       x: 7,
@@ -220,60 +255,99 @@ const level20 = {
       direction: { x: 1, y: 0 },
       start: { x: 7, y: 10 },
       end: { x: 17, y: 10 },
-      speed: 80
+      speed: 90
+    },
+    {
+      type: 'patrol',
+      x: 17,
+      y: 11,
+      direction: { x: -1, y: 0 },
+      start: { x: 7, y: 11 },
+      end: { x: 17, y: 11 },
+      speed: 85
     },
     
     // === CHARGERS ===
     
-    // Top charger - teleports around top half
+    // Top chargers
     {
       type: 'charger',
-      start: { x: 12, y: 2 },
-      x: 12,
+      start: { x: 9, y: 2 },
+      x: 9,
       y: 2,
-      speed: 130,
-      teleportInterval: 3800,
-      aimDuration: 950
+      speed: 145,
+      teleportInterval: 3200,
+      aimDuration: 900
+    },
+    {
+      type: 'charger',
+      start: { x: 15, y: 2 },
+      x: 15,
+      y: 2,
+      speed: 145,
+      teleportInterval: 3600,
+      aimDuration: 900
     },
     
-    // Bottom charger - teleports around bottom half
+    // Bottom chargers
     {
       type: 'charger',
-      start: { x: 12, y: 18 },
-      x: 12,
+      start: { x: 9, y: 18 },
+      x: 9,
       y: 18,
-      speed: 130,
-      teleportInterval: 4200,
-      aimDuration: 950
+      speed: 145,
+      teleportInterval: 3400,
+      aimDuration: 900
+    },
+    {
+      type: 'charger',
+      start: { x: 15, y: 18 },
+      x: 15,
+      y: 18,
+      speed: 145,
+      teleportInterval: 3800,
+      aimDuration: 900
     },
     
     // === CHASERS ===
     
-    // Left side chaser
+    // Corner chasers (avoiding player start at 1,1)
     {
       type: 'chaser',
-      start: { x: 1, y: 10 },
-      x: 1,
-      y: 10,
-      speed: 24
-    },
-    
-    // Right side chaser
-    {
-      type: 'chaser',
-      start: { x: 23, y: 10 },
+      start: { x: 23, y: 1 },
       x: 23,
-      y: 10,
-      speed: 24
+      y: 1,
+      speed: 26
+    },
+    {
+      type: 'chaser',
+      start: { x: 1, y: 19 },
+      x: 1,
+      y: 19,
+      speed: 26
+    },
+    {
+      type: 'chaser',
+      start: { x: 23, y: 19 },
+      x: 23,
+      y: 19,
+      speed: 26
     },
     
-    // Top chaser
+    // Center chasers
     {
       type: 'chaser',
       start: { x: 12, y: 1 },
       x: 12,
       y: 1,
-      speed: 22
+      speed: 24
+    },
+    {
+      type: 'chaser',
+      start: { x: 12, y: 19 },
+      x: 12,
+      y: 19,
+      speed: 24
     }
   ]
 };

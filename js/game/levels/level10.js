@@ -1,7 +1,8 @@
 const level10 = {
   cols: 14,
   rows: 18,
-
+  cellSize: 40,
+  
   arena: [
     1,1,1,1,1,1,1,1,1,1,1,1,1,1,
     1,0,0,0,0,0,0,0,0,0,0,0,0,1,
@@ -91,7 +92,7 @@ const level10 = {
       type: 'patrol',
       direction: { x: 1, y: 0 },
       start: { x: 3, y: 7 },
-      end: { x: 9, y: 7 },
+      end: { x: 8, y: 7 },
       x: 3,
       y: 7,
       speed: 35,
@@ -109,7 +110,7 @@ const level10 = {
       type: 'patrol',
       direction: { x: 0, y: -1 },
       start: { x: 10, y: 16 },
-      end: { x: 10, y: 10 },
+      end: { x: 10, y: 11 },
       x: 10,
       y: 16,
       speed: 42,

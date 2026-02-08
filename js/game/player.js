@@ -31,6 +31,8 @@ function updatePlayer() {
 function drawPlayer() {
   fill('#00BEDA');
   
+  let level = Game.getLevel();
+
   let currentX = player.x;
   let currentY = player.y;
   
@@ -41,9 +43,9 @@ function drawPlayer() {
   }
 
   // Draw circle in center of cell
-  let centerX = currentX * Game.cellSize + Game.cellSize / 2;
-  let centerY = currentY * Game.cellSize + Game.cellSize / 2;
-  let size = Game.cellSize * 0.55; // 55% of cell size
+  let centerX = currentX * level.cellSize + level.cellSize / 2;
+  let centerY = currentY * level.cellSize + level.cellSize / 2;
+  let size = level.cellSize * 0.55; // 55% of cell size
   let radius = size * 0.3;
 
   drawingContext.shadowBlur = 20;

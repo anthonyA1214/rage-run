@@ -1,5 +1,4 @@
 const Game = {
-  cellSize: 40,
   currentLevel: 0,
   isGameStarted: false,
   deathCount: 0,
@@ -73,6 +72,10 @@ const Game = {
         enemy.targetX = null;
         enemy.targetY = null;
         enemy.stateStartTime = millis();
+      } else if (enemy.type === "bouncer") {
+        enemy.x = enemy.start.x;
+        enemy.y = enemy.start.y;
+        enemy.direction = { x: enemy.startDirection.x, y: enemy.startDirection.y };
       }
     });
   },
@@ -90,7 +93,7 @@ const Game = {
 
       level.orbs.forEach(orb => orb.collected = false);
 
-      resizeCanvas(level.cols * this.cellSize, level.rows * this.cellSize);
+      resizeCanvas(level.cols * level.cellSize, level.rows * level.cellSize);
     } else {
       Game.isGameFinished = true;
     }
