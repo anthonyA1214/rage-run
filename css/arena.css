@@ -50,3 +50,19 @@
   background-color: #ffc107;
   border: 0;
 }
+
+#trophy-status-icon {
+  color: #ffd700;
+}
+
+#skull-status-icon {
+  color: #e53e3e;
+}
+
+#time-status-icon {
+  color: #63b3ed;
+}
+
+#star-status-icon {
+  color: #f6e05e;
+}

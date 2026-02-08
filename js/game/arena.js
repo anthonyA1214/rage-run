@@ -7,7 +7,7 @@ function drawArena() {
       let y = floor(i / level.cols);
       
       fill('#3F4A5B');
-      rect(x * Game.cellSize, y * Game.cellSize, Game.cellSize, Game.cellSize);
+      rect(x * level.cellSize, y * level.cellSize, level.cellSize, level.cellSize);
     }
   }
 }

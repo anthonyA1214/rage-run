@@ -28,6 +28,7 @@
 
 {
   type: 'charger',
+  start: { x: 6, y: 5 },
   x: 6,
   y: 5,
   speed: 150,  // Speed during charge
@@ -35,3 +36,38 @@
   aimDuration: 800  // Aim for 0.8 seconds before charging
 }
 
+========= BOUNCER ==========
+
+{
+  type: 'bouncer',
+  start: { x: 13, y: 8 },
+  x: 13,
+  y: 8,
+  speed: 85,  // Moderate speed
+  startDirection: { x: 0.707, y: 0.707 }  // Initial diagonal direction
+  direction: { x: 0.707, y: 0.707 } 
+}
+
+========= ORBITER ==========
+
+{
+  type: 'orbiter',
+  start: { x: 6, y: 8 },  // This becomes the center point
+  x: 6,
+  y: 8,
+  centerX: 6,      // Center of orbit
+  centerY: 8,       // Center of orbit
+  radius: 1,        // Distance from center in cells
+  orbitSpeed: 10     // Degrees per frame (higher = faster)
+},
+{
+  type: 'orbiter',
+  start: { x: 6, y: 8 },
+  x: 6,
+  y: 8,
+  centerX: 6,
+  centerY: 8,
+  radius: 3,
+  orbitSpeed: -10,  // Negative = counter-clockwise
+  angle: 180         // Start at different angle
+}

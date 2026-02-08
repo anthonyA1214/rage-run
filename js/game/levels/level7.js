@@ -1,7 +1,8 @@
 const level7 = {
   cols: 7,
   rows: 15,
-
+  cellSize: 40,
+  
   arena: [
     1,1,1,1,1,1,1,
     1,0,0,0,0,0,1,

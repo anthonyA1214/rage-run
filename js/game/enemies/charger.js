@@ -1,39 +1,3 @@
-function updateEnemies() {
-  const level = Game.getLevel();
-  
-  if (!level.enemies) return;
-
-  // Update enemy positions
-  level.enemies.forEach(enemy => {
-    let moveAmount = (enemy.speed / 1000);
-
-    if (enemy.type === 'patrol') {
-
-      enemy.x += enemy.direction.x * moveAmount;
-      enemy.y += enemy.direction.y * moveAmount;
-  
-      if (enemy.x < Math.min(enemy.start.x, enemy.end.x) ||
-          enemy.x > Math.max(enemy.start.x, enemy.end.x) ||
-          enemy.y < Math.min(enemy.start.y, enemy.end.y) ||
-          enemy.y > Math.max(enemy.start.y, enemy.end.y)) {
-        enemy.direction.x *= -1;
-        enemy.direction.y *= -1;
-      }
-    } else if (enemy.type === 'chaser') {
-      let dx = player.x - enemy.x;
-      let dy = player.y - enemy.y;
-      let distance = sqrt(dx * dx + dy * dy);
-      if (distance > 0) {
-        enemy.x += (dx / distance) * moveAmount;
-        enemy.y += (dy / distance) * moveAmount;
-      }
-    } else if (enemy.type === 'charger') {
-      updateChargerEnemy(enemy);
-    }
-  });
-
-}
-
 function updateChargerEnemy(enemy) {
   // idle -> aiming -> charging -> idle
   if (!enemy.state) enemy.state = 'idle';
@@ -42,6 +6,17 @@ function updateChargerEnemy(enemy) {
     if (millis() - (enemy.lastTeleport || 0) > enemy.teleportInterval) {
       teleportChargerNearPlayer(enemy);
       enemy.lastTeleport = millis();
+
+      enemy.state = 'cooldown';
+      enemy.cooldownStart = millis();
+    }
+  } else if (enemy.state === 'cooldown') {
+    enemy.targetX = player.x;
+    enemy.targetY = player.y;
+
+    let duration = enemy.cooldownDuration || 800;
+  
+    if (millis() - enemy.cooldownStart > duration) {
       enemy.state = 'aiming';
       enemy.aimStart = millis();
       enemy.targetX = player.x;
@@ -99,61 +74,7 @@ function teleportChargerNearPlayer(enemy) {
   // If couldn't teleport, just stay where you are
 }
 
-function drawEnemies() {
-  const level = Game.getLevel();
-
-  if (!level.enemies) return;
-
-  level.enemies.forEach(enemy => {
-    let centerX = enemy.x * Game.cellSize + Game.cellSize / 2;
-    let centerY = enemy.y * Game.cellSize + Game.cellSize / 2;
-
-    if (enemy.type === 'patrol') {
-      drawPatrol(enemy, centerX, centerY);
-    } else if (enemy.type === 'chaser') {
-      drawChaser(enemy, centerX, centerY);
-    } else if (enemy.type === 'charger') {
-      drawCharger(enemy, centerX, centerY);
-    }
-    
-  }) 
-}
-
-function drawPatrol(enemy, centerX, centerY) {
-  fill('#EF4444');
-
-  drawingContext.shadowBlur = 20;
-  drawingContext.shadowColor = '#EF4444';
-
-  ellipse(centerX, centerY, Game.cellSize * 0.75);
-
-  drawingContext.shadowBlur = 0;
-}
-
-function drawChaser(enemy, centerX, centerY) {
-  fill('#A855F7');
-  let size = Game.cellSize * 0.75;
-  
-  let dx = player.x - enemy.x;
-  let dy = player.y - enemy.y;
-  let angle = atan2(dy, dx);
-  
-  push();
-  translate(centerX, centerY);
-  rotate(angle);
-
-  drawingContext.shadowBlur = 20;
-  drawingContext.shadowColor = '#A855F7';
-
-  triangle(
-    size / 2, 0,
-    -size / 2, -size / 3,
-    -size / 2, size / 3
-  );
-
-  drawingContext.shadowBlur = 0;
-  pop();
-}
+// drawwww!!!!!
 
 function drawCharger(enemy, centerX, centerY) {
   let size = Game.cellSize * 0.7;
@@ -172,6 +93,13 @@ function drawCharger(enemy, centerX, centerY) {
     // Semi-transparent when idle
     fill(250, 134, 215, 150);
     glowStrength = 10;
+  } else if (enemy.state === 'cooldown') {
+    let t = (millis() - enemy.cooldownStart) * 0.008;
+  
+    let pulse = sin(t) * 0.4 + 0.6;
+  
+    fill(250, 134, 215, 180);
+    glowStrength = 12 + pulse * 18;
   } else if (enemy.state === 'aiming') {
     // Pulsing cyan when aiming
     let pulse = sin(millis() * 0.01) * 0.3 + 0.7;
@@ -214,20 +142,4 @@ function drawKite(cx, cy, size, angle = 0) {
   endShape(CLOSE);
 
   pop();
-}
-
-function checkEnemyCollision() {
-  const level = Game.getLevel();
-
-  if (!level.enemies) return;
-
-  // Check collision with enemies
-  for (let enemy of level.enemies) {
-    let enemyX = Math.round(enemy.x);
-    let enemyY = Math.round(enemy.y);
-    if (enemyX === player.x && enemyY === player.y) {
-      Game.resetLevel();
-      break;
-    }
-  }
 }
