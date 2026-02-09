@@ -1,0 +1,70 @@
+.leaderboard-header {
+  font-size: 3rem;
+}
+
+.leaderboard-trophy {
+  color: #ffd700;
+  width: 1em;
+  height: 1em;
+}
+
+/* ========= TABLE ========= */
+
+.leaderboard-table > thead {
+  border-bottom: 2px solid #fdb813;
+}
+
+.th-content {
+  display: flex;
+  align-items: center; /* vertical center */
+  justify-content: center; /* horizontal center */
+  display: flex;
+  gap: 0.5rem;
+}
+
+.leaderboard-table thead th {
+  padding: 1rem 2.5rem;
+  background: linear-gradient(180deg, #ffb300, #ff8c00);
+  color: #111;
+  font-weight: 800;
+  letter-spacing: 0.1em;
+  border: none;
+  text-align: center;
+}
+
+.leaderboard-table tbody td {
+  padding: 0.75rem 5rem;
+}
+
+.leaderboard-table tbody tr {
+  color: white;
+}
+
+.rank {
+  width: 80px;
+  text-align: center;
+}
+
+.rank i {
+  font-size: 26px;
+}
+
+.rank-1,
+.rank-2,
+.rank-3 {
+  background: linear-gradient(
+    90deg,
+    rgba(255, 180, 0, 0.06),
+    rgba(0, 0, 0, 0.95)
+  );
+}
+
+.time {
+  color: #ffb300;
+  font-weight: 700;
+  text-align: center;
+}
+
+.leaderboard-table tbody tr {
+  background-color: rgba(0, 0, 0, 0.95);
+}

@@ -1,18 +1,19 @@
 const Game = {
-  currentLevel: 22,
+  currentLevel: 21,
   isGameStarted: false,
-  deathCount: 0,
+  deathCount: 3,
   orbsCollected: 0,
-  isGameFinished: false,
+  isGameFinished: true,
+  isGamePuased: false,
 
   getLevel() {
     return levels[this.currentLevel];
   },
-  
+
   getCols() {
     return this.getLevel().cols;
   },
-  
+
   getRows() {
     return this.getLevel().rows;
   },
@@ -44,17 +45,16 @@ const Game = {
     updateDeathCount();
     updateOrbsCollected();
 
-
     // reset orbs
-    level.orbs.forEach(orb => orb.collected = false);
+    level.orbs.forEach((orb) => (orb.collected = false));
 
     // reset enemies
-    level.enemies.forEach(enemy => {
-      if (enemy.type === 'patrol') {
+    level.enemies.forEach((enemy) => {
+      if (enemy.type === "patrol") {
         resetPatrol(enemy);
-      } else if (enemy.type === 'chaser') {
+      } else if (enemy.type === "chaser") {
         resetChaser(enemy);
-      } else if (enemy.type === 'charger') {        
+      } else if (enemy.type === "charger") {
         resetCharger(enemy);
       } else if (enemy.type === "orbiter") {
         resetOrbiter(enemy);
@@ -75,15 +75,15 @@ const Game = {
 
       let level = this.getLevel();
 
-      level.orbs.forEach(orb => orb.collected = false);
-      level.enemies.forEach(enemy => {
-        if (enemy.type === 'patrol') {
+      level.orbs.forEach((orb) => (orb.collected = false));
+      level.enemies.forEach((enemy) => {
+        if (enemy.type === "patrol") {
           resetPatrol(enemy);
-        } else if (enemy.type === 'chaser') {
+        } else if (enemy.type === "chaser") {
           resetChaser(enemy);
-        } else if (enemy.type === 'charger') {        
+        } else if (enemy.type === "charger") {
           resetCharger(enemy);
-        } else if(enemy.type === "orbiter") {
+        } else if (enemy.type === "orbiter") {
           resetOrbiter(enemy);
         } else if (enemy.type === "bouncer") {
           resetBouncer(enemy);
@@ -94,7 +94,7 @@ const Game = {
     } else {
       Game.isGameFinished = true;
     }
-  }
+  },
 };
 
 function resetPatrol(enemy) {
@@ -110,12 +110,12 @@ function resetPatrol(enemy) {
 function resetChaser(enemy) {
   enemy.x = enemy.start.x;
   enemy.y = enemy.start.y;
-} 
+}
 
 function resetCharger(enemy) {
   enemy.x = enemy.start.x;
   enemy.y = enemy.start.y;
-  enemy.state = 'idle';
+  enemy.state = "idle";
   enemy.chargeDirection = null;
   enemy.targetX = null;
   enemy.targetY = null;

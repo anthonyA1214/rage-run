@@ -44,7 +44,7 @@ const level22 = {
       start: { x: 7, y: 5 },
       x: 7,
       y: 5,
-      speed: 90,
+      speed: 80,
       startDirection: { x: 0.7, y: 0.7 },
       direction: { x: 0.7, y: 0.7 }
     },
@@ -53,18 +53,18 @@ const level22 = {
       start: { x: 15, y: 14 },
       x: 15,
       y: 14,
-      speed: 95,
+      speed: 82,
       startDirection: { x: -1, y: 0 },
       direction: { x: -1, y: 0 }
     },
-  
+    
     // New bouncers
     {
       type: 'bouncer',
       start: { x: 12, y: 3 },
       x: 12,
       y: 3,
-      speed: 88,
+      speed: 84,
       startDirection: { x: -0.6, y: 0.8 },
       direction: { x: -0.6, y: 0.8 }
     },
@@ -73,7 +73,7 @@ const level22 = {
       start: { x: 17, y: 9 },
       x: 17,
       y: 9,
-      speed: 92,
+      speed: 86,
       startDirection: { x: 0.8, y: -0.6 },
       direction: { x: 0.8, y: -0.6 }
     },
@@ -82,7 +82,7 @@ const level22 = {
       start: { x: 6, y: 16 },
       x: 6,
       y: 16,
-      speed: 85,
+      speed: 88,
       startDirection: { x: 0.7, y: -0.7 },
       direction: { x: 0.7, y: -0.7 }
     },
@@ -113,14 +113,14 @@ const level22 = {
       start: { x: 10, y: 10 },
       x: 10,
       y: 10,
-      speed: 28
+      speed: 25
     },
     {
       type: 'chaser',
       start: { x: 5, y: 15 },
       x: 5,
       y: 15,
-      speed: 32
+      speed: 29
     },
   
     // Charger

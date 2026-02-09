@@ -5,38 +5,64 @@
 }
 
 #reset-button {
-  background-color: #ffc107;
+  background: linear-gradient(to right, #ffd700, #e26002);
   border: 0;
   border-radius: 10px;
-  transition: transform 0.2s ease;
+  transition:
+    box-shadow 0.2s ease,
+    transform 0.2s ease;
 }
 
 #reset-button:hover {
+  box-shadow: 0 0 30px rgba(253, 184, 19, 0.6);
   transform: scale(1.05);
 }
 
 #reset-button:active {
   transform: scale(0.95);
+  box-shadow: none;
 }
 
 .overlay {
+  /* filter blur */
+  backdrop-filter: blur(5px);
   background: rgba(0, 0, 0, 0.6); /* semi-transparent dark */
+  transition: opacity 0.3s ease;
+  opacity: 0; /* start invisible */
   z-index: 100; /* above everything */
 }
 
+.overlay.show {
+  opacity: 1; /* fade in */
+}
+
+/* Content pop-up */
 .overlay-content {
-  background-color: #171e2c;
-  border: 5px solid #4a5565;
+  width: 32rem;
+  background-color: #181e37;
+  border: 4px solid #ffd700;
+  opacity: 0;
+  transform: scale(0.85) translateY(20px);
+  transition:
+    opacity 0.25s ease,
+    transform 0.35s cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+
+/* Content visible */
+.overlay-content.show {
+  opacity: 1;
+  transform: scale(1) translateY(0);
 }
 
 #overlay-icon {
   filter: drop-shadow(0 0 10px #ffd700);
   color: #ffd700;
-  width: 10em;
-  height: 10em;
+  width: 7.5em;
+  height: 7.5em;
 }
 
 #overlay-title {
+  font-weight: 800 !important;
   /* gradient text from gold to orange */
   background: linear-gradient(to right, #ffd700, #e26002);
   -webkit-background-clip: text;
@@ -46,33 +72,22 @@
   background-clip: text;
 }
 
-#back-to-menu-button {
-  background-color: #ffc107;
+#submit-button {
+  background: linear-gradient(to right, #ffd700, #e26002);
   border: 0;
+  transition:
+    box-shadow 0.2s ease,
+    transform 0.2s ease;
 }
 
-#trophy-status-icon {
-  color: #ffd700;
+#submit-button:hover {
+  box-shadow: 0 0 30px rgba(253, 184, 19, 0.6);
+  transform: scale(1.05);
 }
 
-#skull-status-icon {
-  color: #e53e3e;
-}
-
-#time-status-icon {
-  color: #63b3ed;
-}
-
-#star-status-icon {
-  color: #f6e05e;
-}
-
-#container {
-  box-shadow:
-    0 0 20px rgba(255, 255, 255, 0.3),
-    0 0 40px rgba(255, 255, 255, 0.2),
-    0 0 60px rgba(255, 255, 255, 0.1);
-  border-radius: 8px;
+#submit-button:active {
+  transform: scale(0.95);
+  box-shadow: none;
 }
 
 /* Or for a colored glow */
@@ -82,4 +97,34 @@
     0 0 40px rgba(59, 130, 246, 0.3),
     0 0 60px rgba(59, 130, 246, 0.1);
   border-radius: 8px;
+}
+
+.gold-text {
+  color: #ffb300;
+}
+
+.red-text {
+  color: #e53e3e;
+}
+
+form input {
+  background-color: #0e1120;
+  border: 2px solid #946e18;
+  color: #fff;
+  padding: 10px;
+  border-radius: 10px;
+  transition:
+    border-color 0.2s ease,
+    box-shadow 0.2s ease;
+}
+
+form input:focus {
+  outline: none;
+  border-color: #ffb300;
+  box-shadow: 0 0 10px rgba(255, 179, 0, 0.5);
+}
+
+.status-bg {
+  padding: 10px 20px;
+  background-color: #0e1120;
 }

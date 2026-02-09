@@ -71,15 +71,6 @@ const level24 = {
     },
     {
       type: 'bouncer',
-      start: { x: 15, y: 6 },
-      x: 15,
-      y: 6,
-      speed: 60,
-      startDirection: { x: 0, y: 1 },
-      direction: { x: 0, y: 1 }
-    },
-    {
-      type: 'bouncer',
       start: { x: 4, y: 12 },
       x: 4,
       y: 12,
@@ -95,15 +86,6 @@ const level24 = {
       speed: 62,
       startDirection: { x: -0.7, y: 0.7 },
       direction: { x: -0.7, y: 0.7 }
-    },
-    {
-      type: 'bouncer',
-      start: { x: 5, y: 8 },
-      x: 5,
-      y: 8,
-      speed: 60,
-      startDirection: { x: 0, y: 1 },
-      direction: { x: 0, y: 1 }
     },
 
     // ===== PATROLS =====
@@ -150,14 +132,14 @@ const level24 = {
       start: { x: 6, y: 6 },
       x: 6,
       y: 6,
-      speed: 36
+      speed: 20
     },
     {
       type: 'chaser',
       start: { x: 14, y: 15 },
       x: 14,
       y: 15,
-      speed: 38
+      speed: 25
     },
 
     // ===== CHARGERS =====
