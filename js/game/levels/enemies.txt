@@ -4,7 +4,7 @@
   type: 'patrol',
   x: 5,
   y: 11,
-  direction: { x: 1, y: 0 },
+  direction: { x: 1, y: 0 }, // can be different direction like x: -1
   start: { x: 1, y: 11 },
   end: { x: 11, y: 11 },
   speed: 100
@@ -44,7 +44,7 @@
   x: 13,
   y: 8,
   speed: 85,  // Moderate speed
-  startDirection: { x: 0.707, y: 0.707 }  // Initial diagonal direction
+  startDirection: { x: 0.707, y: 0.707 },  // Initial diagonal direction
   direction: { x: 0.707, y: 0.707 } 
 }
 
@@ -58,7 +58,8 @@
   centerX: 6,      // Center of orbit
   centerY: 8,       // Center of orbit
   radius: 1,        // Distance from center in cells
-  orbitSpeed: 10     // Degrees per frame (higher = faster)
+  orbitSpeed: 10,     // Degrees per frame (higher = faster)
+  startAngle: 0      // Starting angle in degrees (0 = to the right)
 },
 {
   type: 'orbiter',
@@ -69,5 +70,5 @@
   centerY: 8,
   radius: 3,
   orbitSpeed: -10,  // Negative = counter-clockwise
-  angle: 180         // Start at different angle
+  startAngle: 180         // Start at different angle
 }

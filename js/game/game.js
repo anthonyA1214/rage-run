@@ -1,18 +1,19 @@
 const Game = {
-  currentLevel: 0,
+  currentLevel: 21,
   isGameStarted: false,
-  deathCount: 0,
+  deathCount: 3,
   orbsCollected: 0,
-  isGameFinished: false,
+  isGameFinished: true,
+  isGamePuased: false,
 
   getLevel() {
     return levels[this.currentLevel];
   },
-  
+
   getCols() {
     return this.getLevel().cols;
   },
-  
+
   getRows() {
     return this.getLevel().rows;
   },
@@ -44,38 +45,21 @@ const Game = {
     updateDeathCount();
     updateOrbsCollected();
 
-
     // reset orbs
-    level.orbs.forEach(orb => orb.collected = false);
+    level.orbs.forEach((orb) => (orb.collected = false));
 
     // reset enemies
-    level.enemies.forEach(enemy => {
-      if (enemy.type === 'patrol') {
-        enemy.x = enemy.start.x;
-        enemy.y = enemy.start.y;
-        // Set initial direction based on start/end points
-        if (enemy.start.x !== enemy.end.x) {
-          enemy.direction = { x: 1, y: 0 };
-        } else {
-          enemy.direction = { x: 0, y: 1 };
-        }
-      } else if (enemy.type === 'chaser') {
-        // For chasers, we can reset their position to a predefined spot or keep them where they are
-        // Here, we'll reset them to their initial position
-        enemy.x = enemy.start.x;
-        enemy.y = enemy.start.y;
-      } else if (enemy.type === 'charger') {        
-        enemy.x = enemy.start.x;
-        enemy.y = enemy.start.y;
-        enemy.state = 'idle';
-        enemy.chargeDirection = null;
-        enemy.targetX = null;
-        enemy.targetY = null;
-        enemy.stateStartTime = millis();
+    level.enemies.forEach((enemy) => {
+      if (enemy.type === "patrol") {
+        resetPatrol(enemy);
+      } else if (enemy.type === "chaser") {
+        resetChaser(enemy);
+      } else if (enemy.type === "charger") {
+        resetCharger(enemy);
+      } else if (enemy.type === "orbiter") {
+        resetOrbiter(enemy);
       } else if (enemy.type === "bouncer") {
-        enemy.x = enemy.start.x;
-        enemy.y = enemy.start.y;
-        enemy.direction = { x: enemy.startDirection.x, y: enemy.startDirection.y };
+        resetBouncer(enemy);
       }
     });
   },
@@ -91,11 +75,59 @@ const Game = {
 
       let level = this.getLevel();
 
-      level.orbs.forEach(orb => orb.collected = false);
+      level.orbs.forEach((orb) => (orb.collected = false));
+      level.enemies.forEach((enemy) => {
+        if (enemy.type === "patrol") {
+          resetPatrol(enemy);
+        } else if (enemy.type === "chaser") {
+          resetChaser(enemy);
+        } else if (enemy.type === "charger") {
+          resetCharger(enemy);
+        } else if (enemy.type === "orbiter") {
+          resetOrbiter(enemy);
+        } else if (enemy.type === "bouncer") {
+          resetBouncer(enemy);
+        }
+      });
 
       resizeCanvas(level.cols * level.cellSize, level.rows * level.cellSize);
     } else {
       Game.isGameFinished = true;
     }
-  }
+  },
 };
+
+function resetPatrol(enemy) {
+  enemy.x = enemy.start.x;
+  enemy.y = enemy.start.y;
+  if (enemy.start.x !== enemy.end.x) {
+    enemy.direction = { x: 1, y: 0 };
+  } else {
+    enemy.direction = { x: 0, y: 1 };
+  }
+}
+
+function resetChaser(enemy) {
+  enemy.x = enemy.start.x;
+  enemy.y = enemy.start.y;
+}
+
+function resetCharger(enemy) {
+  enemy.x = enemy.start.x;
+  enemy.y = enemy.start.y;
+  enemy.state = "idle";
+  enemy.chargeDirection = null;
+  enemy.targetX = null;
+  enemy.targetY = null;
+  enemy.stateStartTime = millis();
+}
+
+function resetOrbiter(enemy) {
+  enemy.angle = enemy.startAngle ?? 0;
+}
+
+function resetBouncer(enemy) {
+  enemy.x = enemy.start.x;
+  enemy.y = enemy.start.y;
+  enemy.direction = { x: enemy.startDirection.x, y: enemy.startDirection.y };
+}

@@ -14,6 +14,71 @@
 }
 
 #start-button {
-  background-color: #ffc107;
+  position: relative;
+  overflow: hidden;
+
+  background: linear-gradient(to right, #ffb300, #ff8c00);
   border: 0;
+
+  transition:
+    box-shadow 0.2s ease,
+    transform 0.2s ease;
+}
+
+#start-button:hover {
+  box-shadow: 0 0 30px rgba(253, 184, 19, 0.6);
+  transform: scale(1.05);
+}
+
+#start-button:active {
+  transform: scale(0.95);
+  box-shadow: none;
+}
+
+#start-button::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  left: -200%;
+  width: 50%;
+  height: 100%;
+
+  background: linear-gradient(
+    120deg,
+    transparent,
+    rgba(255, 255, 255, 0.35),
+    transparent
+  );
+
+  pointer-events: none;
+}
+
+#start-button::before {
+  animation: shine 2s ease-in-out infinite;
+  animation-delay: 1s;
+}
+
+@keyframes shine {
+  from {
+    left: -200%;
+  }
+  to {
+    left: 200%;
+  }
+}
+
+#leaderboard-button {
+  border: 2px solid #ffc107;
+  color: #ffc107;
+  transition:
+    box-shadow 0.2s ease,
+    transform 0.2s ease;
+}
+
+#leaderboard-button:hover {
+  transform: scale(1.05);
+}
+
+#leaderboard-button:active {
+  transform: scale(0.95);
 }

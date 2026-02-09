@@ -34,8 +34,7 @@
               stroke-width="2"
               stroke-linecap="round"
               stroke-linejoin="round"
-              class="icon icon-tabler icons-tabler-outline icon-tabler-trophy"
-              id="trophy-status-icon"
+              class="icon icon-tabler icons-tabler-outline icon-tabler-trophy trophy-icon"
             >
               <path stroke="none" d="M0 0h24v24H0z" fill="none" />
               <path d="M8 21l8 0" />
@@ -60,8 +59,7 @@
               stroke-width="2"
               stroke-linecap="round"
               stroke-linejoin="round"
-              class="icon icon-tabler icons-tabler-outline icon-tabler-skull"
-              id="skull-status-icon"
+              class="icon icon-tabler icons-tabler-outline icon-tabler-skull skull-icon"
             >
               <path stroke="none" d="M0 0h24v24H0z" fill="none" />
               <path
@@ -87,8 +85,7 @@
               stroke-width="2"
               stroke-linecap="round"
               stroke-linejoin="round"
-              class="icon icon-tabler icons-tabler-outline icon-tabler-clock"
-              id="time-status-icon"
+              class="icon icon-tabler icons-tabler-outline icon-tabler-clock time-icon"
             >
               <path stroke="none" d="M0 0h24v24H0z" fill="none" />
               <path d="M3 12a9 9 0 1 0 18 0a9 9 0 0 0 -18 0" />
@@ -109,8 +106,7 @@
               stroke-width="2"
               stroke-linecap="round"
               stroke-linejoin="round"
-              class="icon icon-tabler icons-tabler-outline icon-tabler-star"
-              id="star-status-icon"
+              class="icon icon-tabler icons-tabler-outline icon-tabler-star star-icon"
             >
               <path stroke="none" d="M0 0h24v24H0z" fill="none" />
               <path
@@ -179,7 +175,10 @@
 
         <!-- instructions -->
         <div class="d-flex flex-column text-white status-bar text-center">
-          <span>Use WASD or Arrow Keys to move</span>
+          <span
+            >Use <span class="fw-bolder gold-text">WASD</span> or
+            <span class="fw-bolder gold-text">ARROW KEYS</span> to move</span
+          >
           <span class="opacity-75 fs-6">
             Tip: Use Ctrl + / Ctrl − or pinch to zoom the game
           </span>
@@ -190,10 +189,12 @@
     <!-- Overlay -->
     <div
       id="overlay"
-      class="overlay d-none z-3 position-absolute top-0 left-0 w-100 h-100 d-flex flex-column justify-content-center align-items-center"
+      class="overlay z-3 position-absolute top-0 left-0 w-100 h-100 d-flex flex-column justify-content-center align-items-center d-none"
     >
+      <!-- game complete overlay -->
       <div
-        class="overlay-content text-center text-white mb-5 p-5 rounded-5 shadow-lg d-flex flex-column justify-content-center align-items-center"
+        class="overlay-content d-none text-center text-white p-5 rounded-5 shadow-lg d-flex flex-column justify-content-center align-items-center gap-4"
+        id="game-complete-content"
       >
         <svg
           id="overlay-icon"
@@ -216,19 +217,58 @@
           <path d="M3 9a2 2 0 1 0 4 0a2 2 0 1 0 -4 0" />
           <path d="M17 9a2 2 0 1 0 4 0a2 2 0 1 0 -4 0" />
         </svg>
-        <h1 id="overlay-title" class="display-2 fw-semibold">GAME COMPLETE!</h1>
-        <span id="overlay-deaths" class="fs-2">Total Deaths: 0</span>
-        <span id="overlay-time" class="fs-2">Total Time: 0:00</span>
+        <div class="d-flex flex-column">
+          <h1 id="overlay-title" class="display-3">VICTORY!</h1>
+          <h3 class="fs-4">You completed all levels!</h3>
+        </div>
 
-        <a href="../" class="text-decoration-none mt-4">
-          <button
-            id="back-to-menu-button"
-            class="btn-lg px-4 py-3 fw-semibold d-flex align-items-center justify-content-center text-white button min-w-250px mx-auto"
+        <div class="d-flex flex-column status-bg w-100 fs-6 rounded-3 gap-2">
+          <div
+            class="d-flex flex-row align-items-center justify-content-between"
           >
-            Back to Menu
+            <span>Total Time:</span>
+            <span id="overlay-time" class="fw-semibold gold-text">0:00</span>
+          </div>
+
+          <div
+            class="d-flex flex-row align-items-center justify-content-between"
+          >
+            <span>Total Deaths:</span>
+            <span id="overlay-deaths" class="fw-semibold red-text">0</span>
+          </div>
+        </div>
+
+        <div class="d-flex flex-column mt-4 w-100 gap-3">
+          <form id="leaderboard-form" class="d-flex flex-column gap-4">
+            <div class="d-flex flex-column gap-2">
+              <label class="align-self-start" for="username"
+                >Enter username for leaderboard:</label
+              >
+              <input id="username" name="username" type="text" />
+            </div>
+
+            <button
+              type="submit"
+              id="submit-button"
+              class="btn-lg px-4 py-3 fw-semibold d-flex align-items-center justify-content-center button w-100 mx-auto fs-6"
+            >
+              SUBMIT SCORE
+            </button>
+          </form>
+
+          <button
+            class="btn-lg text-white px-4 py-2 fw-semibold d-flex align-items-center justify-content-center button w-100 mx-auto fs-6"
+          >
+            SKIP TO MENU
           </button>
-        </a>
+        </div>
       </div>
+
+      <!-- play overlay -->
+      <div
+        class="overlay-content d-none text-center text-white p-5 rounded-5 shadow-lg d-flex flex-column justify-content-center align-items-center gap-4"
+        id="game-complete-content"
+      ></div>
     </div>
 
     <script src="../js/bootstrap.bundle.min.js"></script>
@@ -265,6 +305,11 @@
     <script src="../js/game/levels/level18.js"></script>
     <script src="../js/game/levels/level19.js"></script>
     <script src="../js/game/levels/level20.js"></script>
+    <script src="../js/game/levels/level21.js"></script>
+    <script src="../js/game/levels/level22.js"></script>
+    <script src="../js/game/levels/level23.js"></script>
+    <script src="../js/game/levels/level24.js"></script>
+    <script src="../js/game/levels/level25.js"></script>
     <script src="../js/game/levels/index.js"></script>
 
     <script src="../js/game/arena.js"></script>
@@ -274,5 +319,7 @@
 
     <script src="../js/game/sketch.js"></script>
     <script src="../js/overlay.js"></script>
+
+    <script type="module" src="../js/submit-score.js"></script>
   </body>
 </html>

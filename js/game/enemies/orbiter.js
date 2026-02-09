@@ -1,7 +1,7 @@
 function updateOrbiterEnemy(enemy) {
   // Initialize if needed
   if (enemy.angle === undefined) {
-    enemy.angle = 0;
+    enemy.angle = enemy.startAngle ?? 0;
   }
   
   // Get orbit settings

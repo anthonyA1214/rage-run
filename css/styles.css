@@ -1,6 +1,6 @@
 body {
   font-family: "Montserrat", sans-serif;
-  background-image: url("../assets/brick-wall.png");
+  background-image: url("../assets/grid-space-black-background-gray-footage-175245876_iconl\ \(1\).png");
   background-size: cover;
   background-repeat: no-repeat;
 }
@@ -16,13 +16,42 @@ body::after {
   z-index: -1; /* Ensure overlay is above the background */
 }
 
+.line {
+  position: absolute;
+  bottom: -0.5rem;
+  left: 50%;
+
+  height: 4px;
+  width: 0;
+
+  transform: translateX(-50%);
+
+  background: linear-gradient(to right, transparent, #fdb813, transparent);
+
+  box-shadow: 0 0 10px #fdb813;
+
+  animation: grow-line 1s ease forwards;
+  animation-delay: 0.5s;
+}
+
+@keyframes grow-line {
+  to {
+    width: 100%;
+  }
+}
+
 #game-logo {
   position: absolute;
   top: 20px;
   left: 20px;
-  height: 100px;
-  width: 100px;
+  height: 64px;
+  width: 64px;
   z-index: 1;
+  transition: transform 0.2s ease;
+}
+
+#game-logo:hover {
+  transform: scale(1.1) rotate(5deg);
 }
 
 .min-w-250px {
@@ -30,21 +59,36 @@ body::after {
 }
 
 .button {
-  background-color: #28313d;
-  transition: transform 0.2s ease;
-  border-color: #4a5565;
+  background-color: #2f374f;
+  transition:
+    background-color 0.2s ease,
+    transform 0.2s ease;
   border-radius: 10px;
-  border-width: 2px;
+  border: 2px solid #5e6578;
 }
 
 .button:hover {
+  background-color: #3a435f;
   transform: scale(1.05);
-  background-color: #28313d;
-  border-color: #4a5565;
 }
 
 .button:active {
+  background-color: #23293d;
   transform: scale(0.95);
-  background-color: #28313d;
-  border-color: #4a5565;
+}
+
+.trophy-icon {
+  color: #ffd700;
+}
+
+.skull-icon {
+  color: #e53e3e;
+}
+
+.time-icon {
+  color: #63b3ed;
+}
+
+.star-icon {
+  color: #f6e05e;
 }

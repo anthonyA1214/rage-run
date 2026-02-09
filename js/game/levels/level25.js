@@ -1,4 +1,4 @@
-const level20 = {
+const level25 = {
   cols: 25,
   rows: 21,
   cellSize: 30,
@@ -52,7 +52,7 @@ const level20 = {
       centerY: 10,
       radius: 5.5,
       orbitSpeed: 3.0,
-      startAngle: 0
+      angle: 0
     },
     {
       type: 'orbiter',
@@ -63,7 +63,7 @@ const level20 = {
       centerY: 10,
       radius: 5.5,
       orbitSpeed: 3.0,
-      startAngle: 90
+      angle: 90
     },
     {
       type: 'orbiter',
@@ -74,7 +74,7 @@ const level20 = {
       centerY: 10,
       radius: 5.5,
       orbitSpeed: 3.0,
-      startAngle: 180
+      angle: 180
     },
     {
       type: 'orbiter',
@@ -85,7 +85,7 @@ const level20 = {
       centerY: 10,
       radius: 5.5,
       orbitSpeed: 3.0,
-      startAngle: 270
+      angle: 270
     },
     
     // === ORBITERS - MIDDLE RING (3 enemies, opposite direction) ===
@@ -98,7 +98,7 @@ const level20 = {
       centerY: 10,
       radius: 3.5,
       orbitSpeed: -4.5,
-      startAngle: 0
+      angle: 0
     },
     {
       type: 'orbiter',
@@ -109,7 +109,7 @@ const level20 = {
       centerY: 10,
       radius: 3.5,
       orbitSpeed: -4.5,
-      startAngle: 120
+      angle: 120
     },
     {
       type: 'orbiter',
@@ -120,7 +120,7 @@ const level20 = {
       centerY: 10,
       radius: 3.5,
       orbitSpeed: -4.5,
-      startAngle: 240
+      angle: 240
     },
     
     // === ORBITERS - INNER RING (2 enemies, fast) ===
@@ -133,7 +133,7 @@ const level20 = {
       centerY: 10,
       radius: 2,
       orbitSpeed: 5.5,
-      startAngle: 0
+      angle: 0
     },
     {
       type: 'orbiter',
@@ -144,7 +144,7 @@ const level20 = {
       centerY: 10,
       radius: 2,
       orbitSpeed: 5.5,
-      startAngle: 180
+      angle: 180
     },
     
     // === QUADRANT ORBITERS (one per quadrant) ===
@@ -159,7 +159,7 @@ const level20 = {
       centerY: 5,
       radius: 2.5,
       orbitSpeed: 3.8,
-      startAngle: 0
+      angle: 0
     },
     
     // Top-right quadrant
@@ -172,7 +172,7 @@ const level20 = {
       centerY: 5,
       radius: 2.5,
       orbitSpeed: -3.8,
-      startAngle: 90
+      angle: 90
     },
     
     // Bottom-left quadrant
@@ -185,7 +185,7 @@ const level20 = {
       centerY: 15,
       radius: 2.5,
       orbitSpeed: 3.8,
-      startAngle: 180
+      angle: 180
     },
     
     // Bottom-right quadrant
@@ -198,7 +198,7 @@ const level20 = {
       centerY: 15,
       radius: 2.5,
       orbitSpeed: -3.8,
-      startAngle: 270
+      angle: 270
     },
     
     // === PATROLS ===
