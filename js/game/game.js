@@ -1,13 +1,17 @@
 const Game = {
-  currentLevel: 21,
+  currentLevel: 0,
   isGameStarted: false,
-  deathCount: 3,
+  deathCount: 0,
   orbsCollected: 0,
-  isGameFinished: true,
-  isGamePuased: false,
+  isGameFinished: false,
+  isGamePaused: false,
 
   getLevel() {
     return levels[this.currentLevel];
+  },
+
+  getTotalLevels() {
+    return levels.length;
   },
 
   getCols() {
@@ -28,6 +32,18 @@ const Game = {
 
   allOrbsCollected() {
     return this.orbsCollected >= this.getTotalOrbs();
+  },
+
+  togglePause() {
+    this.isGamePaused = !this.isGamePaused;
+
+    if (this.isGamePaused) {
+      noLoop();
+      showPauseOverlay();
+    } else {
+      loop();
+      removePauseOverlay();
+    }
   },
 
   resetLevel() {

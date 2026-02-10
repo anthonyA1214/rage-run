@@ -60,7 +60,7 @@ function easeInOutQuad(t) {
   return t < 0.5 ? 2 * t * t : -1 + (4 - 2 * t) * t;
 }
 
-function keyPressed() {
+function playerMovement() {
   if (playerMoving) return;
 
   let newX = player.x;

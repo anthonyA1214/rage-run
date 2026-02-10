@@ -1,8 +1,14 @@
+function hideAllOverlayContent() {
+  document
+    .querySelectorAll(".overlay-content")
+    .forEach(el => el.classList.remove("show"));
+}
+
 function showGameCompleteOverlay() {
   noLoop();
 
   const overlay = document.getElementById("overlay");
-  const overlayContent = document.getElementById("game-complete-content");
+  const content = document.getElementById("game-complete-content");
   const deathsElement = document.getElementById("overlay-deaths");
   const timeElement = document.getElementById("overlay-time");
 
@@ -14,30 +20,29 @@ function showGameCompleteOverlay() {
     .toString()
     .padStart(2, "0")}`;
 
-  // SHOW overlay (remove display:none)
-  overlay.classList.remove("d-none");
-  overlayContent.classList.remove("d-none");
+  hideAllOverlayContent();
 
-  // trigger animations
   requestAnimationFrame(() => {
-    overlay.classList.add("show");          // fade background
-    overlayContent.classList.add("show");  // pop-up content
+    overlay.classList.add("show");
+    content.classList.add("show");
   });
 }
 
 function showPauseOverlay() {
-  noLoop();
-
   const overlay = document.getElementById("overlay");
-  const overlayContent = document.getElementById("pause-content");
+  const content = document.getElementById("pause-content");
 
-  // SHOW overlay (remove display:none)
-  overlay.classList.remove("d-none");
-  overlayContent.classList.remove("d-none");
+  hideAllOverlayContent();
 
-  // trigger animations
   requestAnimationFrame(() => {
-    overlay.classList.add("show");          // fade background
-    overlayContent.classList.add("show");  // pop-up content
+    overlay.classList.add("show");
+    content.classList.add("show");
   });
+}
+
+function removePauseOverlay() {
+  const overlay = document.getElementById("overlay");
+
+  hideAllOverlayContent();
+  overlay.classList.remove("show");
 }

@@ -29,21 +29,29 @@ function draw() {
   background("#1E2939");
   noStroke();
 
-  if (Game.isGameFinished === false || Game.isGamePaused === false) {
-    updatePlayer();
-    updateEnemies();
+  updatePlayer();
+  updateEnemies();
 
-    drawArena();
-    drawOrbs();
-    drawExit();
-    drawPlayer();
-    drawEnemies();
+  drawArena();
+  drawOrbs();
+  drawExit();
+  drawPlayer();
+  drawEnemies();
 
-    checkEnemyCollision();
-  } else if (Game.isGamePaused === true) {
-    showPauseOverlay();
-  } else if (Game.isGameFinished === true) {
+  checkEnemyCollision();
+  
+  if (Game.isGameFinished === true) {
     showGameCompleteOverlay();
-    drawPlayer();
+  }
+}
+
+function keyPressed() {
+  playerMovement();
+
+  if (!Game.isGameFinished) {
+    if (keyCode === ESCAPE) {
+      Game.togglePause();
+      return;
+    }
   }
 }
