@@ -6,7 +6,7 @@ function updateLevel() {
 
   let levelNumber = Game.currentLevel;
 
-  levelElement.textContent = `Level ${levelNumber + 1}`;
+  levelElement.textContent = `LEVEL ${levelNumber + 1}/${Game.getTotalLevels()}`;
 }
 
 // ========== DEATH COUNT =========
@@ -17,7 +17,7 @@ function updateDeathCount() {
 
   let deathCount = Game.deathCount;
 
-  deathCountElement.textContent = `Deaths: ${deathCount}`;
+  deathCountElement.textContent = `${deathCount}`;
 }
 
 let timeInSeconds = 3;
@@ -29,7 +29,7 @@ function updateTimer() {
   
   if (!timeElement) return;
 
-  if (!Game.isGameFinished) {
+  if (!Game.isGamePaused && !Game.isGameFinished) {
     timeInSeconds += 1;
   }
 
@@ -52,6 +52,6 @@ function updateOrbsCollected() {
   if (!orbsElement) return;
 
   const totalOrbs = Game.getTotalOrbs();
-  orbsElement.textContent = `Items: ${Game.orbsCollected}/${totalOrbs}`;
+  orbsElement.textContent = `${Game.orbsCollected}/${totalOrbs}`;
 }
 

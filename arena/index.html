@@ -10,45 +10,49 @@
     <link rel="stylesheet" href="../css/arena.css" />
   </head>
   <body class="overflow-hidden">
-    <img
-      src="../assets/logo.svg"
-      alt="Icon"
-      width="100"
-      height="100"
-      id="game-logo"
-    />
     <main>
-      <div
-        class="d-flex flex-column justify-content-center align-items-center gap-4 vh-100"
-      >
-        <div class="d-flex text-white gap-5 status-bar">
+      <!-- top bar -->
+      <div class="top-bar">
+        <button
+          class="d-flex align-items-center justify-content-center btn-lg text-white gap-2 fw-bold"
+          id="pause-button"
+          onclick="Game.togglePause()"
+        >
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            width="24"
+            height="24"
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="currentColor"
+            stroke-width="2"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+            class="icon icon-tabler icons-tabler-outline icon-tabler-player-pause"
+          >
+            <path stroke="none" d="M0 0h24v24H0z" fill="none" />
+            <path
+              d="M6 6a1 1 0 0 1 1 -1h2a1 1 0 0 1 1 1v12a1 1 0 0 1 -1 1h-2a1 1 0 0 1 -1 -1l0 -12"
+            />
+            <path
+              d="M14 6a1 1 0 0 1 1 -1h2a1 1 0 0 1 1 1v12a1 1 0 0 1 -1 1h-2a1 1 0 0 1 -1 -1l0 -12"
+            />
+          </svg>
+          <span>PAUSE</span>
+        </button>
+        <div
+          class="d-flex flex-row justify-content-center align-items-center text-white gap-5"
+        >
           <!-- level -->
-          <div class="d-flex align-items-center gap-2">
-            <svg
-              xmlns="http://www.w3.org/2000/svg"
-              width="24"
-              height="24"
-              viewBox="0 0 24 24"
-              fill="none"
-              stroke="currentColor"
-              stroke-width="2"
-              stroke-linecap="round"
-              stroke-linejoin="round"
-              class="icon icon-tabler icons-tabler-outline icon-tabler-trophy trophy-icon"
-            >
-              <path stroke="none" d="M0 0h24v24H0z" fill="none" />
-              <path d="M8 21l8 0" />
-              <path d="M12 17l0 4" />
-              <path d="M7 4l10 0" />
-              <path d="M17 4v8a5 5 0 0 1 -10 0v-8" />
-              <path d="M3 9a2 2 0 1 0 4 0a2 2 0 1 0 -4 0" />
-              <path d="M17 9a2 2 0 1 0 4 0a2 2 0 1 0 -4 0" />
-            </svg>
-            <span id="level-number">Level 1</span>
+          <div class="d-flex align-items-center gap-2 status-items">
+            <span id="level-number">LEVEL 1/25</span>
           </div>
 
           <!-- deaths -->
-          <div class="d-flex align-items-center gap-2">
+          <div
+            class="d-flex align-items-center gap-2 status-items"
+            id="death-container"
+          >
             <svg
               xmlns="http://www.w3.org/2000/svg"
               width="24"
@@ -70,11 +74,14 @@
               <path d="M8 11a1 1 0 1 0 2 0a1 1 0 1 0 -2 0" />
               <path d="M14 11a1 1 0 1 0 2 0a1 1 0 1 0 -2 0" />
             </svg>
-            <span id="death-count">Deaths: 0</span>
+            <span id="death-count">0</span>
           </div>
 
           <!-- time -->
-          <div class="d-flex align-items-center gap-2">
+          <div
+            class="d-flex align-items-center gap-2 status-items time"
+            id="time-container"
+          >
             <svg
               xmlns="http://www.w3.org/2000/svg"
               width="24"
@@ -95,7 +102,10 @@
           </div>
 
           <!-- items -->
-          <div class="d-flex align-items-center gap-2">
+          <div
+            class="d-flex align-items-center gap-2 status-items items"
+            id="items-container"
+          >
             <svg
               xmlns="http://www.w3.org/2000/svg"
               width="24"
@@ -116,65 +126,22 @@
             <span id="orbs-collected">Items: 0</span>
           </div>
         </div>
+        <img src="../assets/logo.svg" alt="Icon" width="100" height="100" />
+      </div>
+
+      <div
+        class="d-flex flex-column justify-content-center align-items-center gap-4 vh-100"
+      >
+        <div class="d-flex text-white gap-5 status-bar"></div>
         <div>
           <!-- game container -->
           <div id="container"></div>
         </div>
 
-        <div class="d-flex gap-4">
-          <!-- reset button -->
-          <button
-            id="reset-button"
-            class="btn-lg px-4 py-3 fw-semibold d-flex align-items-center text-white gap-2"
-            onclick="Game.resetLevel()"
-          >
-            <svg
-              xmlns="http://www.w3.org/2000/svg"
-              width="24"
-              height="24"
-              viewBox="0 0 24 24"
-              fill="none"
-              stroke="currentColor"
-              stroke-width="2"
-              stroke-linecap="round"
-              stroke-linejoin="round"
-              class="icon icon-tabler icons-tabler-outline icon-tabler-restore"
-            >
-              <path stroke="none" d="M0 0h24v24H0z" fill="none" />
-              <path d="M3.06 13a9 9 0 1 0 .49 -4.087" />
-              <path d="M3 4.001v5h5" />
-              <path d="M11 12a1 1 0 1 0 2 0a1 1 0 1 0 -2 0" />
-            </svg>
-            <span>Reset Level</span>
-          </button>
-
-          <!-- back to menu button -->
-          <a href="../" class="text-decoration-none animate-fade-up delay-3">
-            <button
-              class="btn-lg px-4 py-3 fw-semibold d-flex align-items-center justify-content-center text-white button gap-2"
-            >
-              <svg
-                xmlns="http://www.w3.org/2000/svg"
-                width="24"
-                height="24"
-                viewBox="0 0 24 24"
-                fill="none"
-                stroke="currentColor"
-                stroke-width="2"
-                stroke-linecap="round"
-                stroke-linejoin="round"
-                class="icon icon-tabler icons-tabler-outline icon-tabler-arrow-badge-left"
-              >
-                <path stroke="none" d="M0 0h24v24H0z" fill="none" />
-                <path d="M11 17h6l-4 -5l4 -5h-6l-4 5l4 5" />
-              </svg>
-              <span>Back to Menu</span>
-            </button>
-          </a>
-        </div>
-
         <!-- instructions -->
-        <div class="d-flex flex-column text-white status-bar text-center">
+        <div
+          class="d-flex flex-column text-white status-bar text-center position-absolute bottom-0 mb-3"
+        >
           <span
             >Use <span class="fw-bolder gold-text">WASD</span> or
             <span class="fw-bolder gold-text">ARROW KEYS</span> to move</span
@@ -189,18 +156,16 @@
     <!-- Overlay -->
     <div
       id="overlay"
-      class="overlay z-3 position-absolute top-0 left-0 w-100 h-100 d-flex flex-column justify-content-center align-items-center d-none"
+      class="overlay z-3 position-absolute top-0 left-0 w-100 h-100 d-flex flex-column justify-content-center align-items-center"
     >
       <!-- game complete overlay -->
       <div
-        class="overlay-content d-none text-center text-white p-5 rounded-5 shadow-lg d-flex flex-column justify-content-center align-items-center gap-4"
+        class="overlay-content text-center text-white p-5 rounded-5 shadow-lg d-flex flex-column justify-content-center align-items-center gap-4"
         id="game-complete-content"
       >
         <svg
-          id="overlay-icon"
+          id="overlay-trophy-icon"
           xmlns="http://www.w3.org/2000/svg"
-          width="24"
-          height="24"
           viewBox="0 0 24 24"
           fill="none"
           stroke="currentColor"
@@ -219,7 +184,7 @@
         </svg>
         <div class="d-flex flex-column">
           <h1 id="overlay-title" class="display-3">VICTORY!</h1>
-          <h3 class="fs-4">You completed all levels!</h3>
+          <h3 class="fs-4 opacity-75">You completed all levels!</h3>
         </div>
 
         <div class="d-flex flex-column status-bg w-100 fs-6 rounded-3 gap-2">
@@ -242,9 +207,16 @@
           <form id="leaderboard-form" class="d-flex flex-column gap-4">
             <div class="d-flex flex-column gap-2">
               <label class="align-self-start" for="username"
-                >Enter username for leaderboard:</label
+                >Enter username for leaderboard:
+                <span class="opacity-75">(optional)</span></label
               >
-              <input id="username" name="username" type="text" />
+              <input
+                id="username"
+                placeholder="Your username..."
+                name="username"
+                type="text"
+                autocomplete="off"
+              />
             </div>
 
             <button
@@ -255,12 +227,110 @@
               SUBMIT SCORE
             </button>
           </form>
+        </div>
+      </div>
 
+      <!-- play overlay -->
+      <div
+        class="overlay-content text-center text-white p-5 rounded-5 shadow-lg d-flex flex-column justify-content-center align-items-center gap-4"
+        id="pause-content"
+      >
+        <svg
+          xmlns="http://www.w3.org/2000/svg"
+          viewBox="0 0 24 24"
+          fill="none"
+          stroke="currentColor"
+          stroke-width="2"
+          stroke-linecap="round"
+          stroke-linejoin="round"
+          class="icon icon-tabler icons-tabler-outline icon-tabler-player-pause"
+          id="overlay-pause-icon"
+        >
+          <path stroke="none" d="M0 0h24v24H0z" fill="none" />
+          <path
+            d="M6 6a1 1 0 0 1 1 -1h2a1 1 0 0 1 1 1v12a1 1 0 0 1 -1 1h-2a1 1 0 0 1 -1 -1l0 -12"
+          />
+          <path
+            d="M14 6a1 1 0 0 1 1 -1h2a1 1 0 0 1 1 1v12a1 1 0 0 1 -1 1h-2a1 1 0 0 1 -1 -1l0 -12"
+          />
+        </svg>
+        <div class="d-flex flex-column">
+          <h1 class="display-4 py-0" id="paused-text">PAUSED</h1>
+          <h3 class="fs-5 opacity-75">Take a breather!</h3>
+        </div>
+
+        <div class="d-flex flex-column gap-3 w-100">
           <button
-            class="btn-lg text-white px-4 py-2 fw-semibold d-flex align-items-center justify-content-center button w-100 mx-auto fs-6"
+            id="resume-button"
+            class="pause-buttons btn-lg fw-semibold d-flex justify-content-center align-items-center button gap-2"
+            onclick="Game.togglePause()"
           >
-            SKIP TO MENU
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              width="24"
+              height="24"
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="2"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              class="icon icon-tabler icons-tabler-outline icon-tabler-player-play"
+            >
+              <path stroke="none" d="M0 0h24v24H0z" fill="none" />
+              <path d="M7 4v16l13 -8l-13 -8" />
+            </svg>
+            <span>RESUME</span>
           </button>
+          <button
+            class="pause-buttons btn-lg fw-semibold d-flex justify-content-center align-items-center text-white button gap-2"
+            onclick="
+              Game.resetLevel();
+              Game.togglePause();
+            "
+          >
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              width="24"
+              height="24"
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="2"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              class="icon icon-tabler icons-tabler-outline icon-tabler-restore"
+            >
+              <path stroke="none" d="M0 0h24v24H0z" fill="none" />
+              <path d="M3.06 13a9 9 0 1 0 .49 -4.087" />
+              <path d="M3 4.001v5h5" />
+              <path d="M11 12a1 1 0 1 0 2 0a1 1 0 1 0 -2 0" />
+            </svg>
+            <span>RESTART LEVEL</span>
+          </button>
+          <a href="../" class="text-decoration-none w-100">
+            <button
+              id="back-to-menu-button"
+              class="pause-buttons btn-lg fw-semibold d-flex justify-content-center align-items-center text-white button gap-2"
+            >
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                width="24"
+                height="24"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="2"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                class="icon icon-tabler icons-tabler-outline icon-tabler-arrow-badge-left"
+              >
+                <path stroke="none" d="M0 0h24v24H0z" fill="none" />
+                <path d="M11 17h6l-4 -5l4 -5h-6l-4 5l4 5" />
+              </svg>
+              <span>BACK TO MENU</span>
+            </button>
+          </a>
         </div>
       </div>
 
