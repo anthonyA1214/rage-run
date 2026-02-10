@@ -7,10 +7,14 @@ document.addEventListener("DOMContentLoaded", () => {
   form.addEventListener("submit", async (e) => {
     e.preventDefault();
 
-    const username = form.username.value || "Anonymous";
+    const username = form.username.value.trim() || "Anonymous";
 
-    await saveScore(username, Game.deathCount, timeInSeconds);
-
+    try {
+      await saveScore(username, Game.deathCount, timeInSeconds);
+    } catch {
+      alert("Couldn’t save your score this time. Returning to menu.");
+    }
+    
     window.location.href = "../";
   });
 });

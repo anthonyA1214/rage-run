@@ -7,10 +7,10 @@
 }
 
 #header-run {
-  color: #ffdf20;
+  color: #ffd700;
   text-shadow:
     2px 2px 4px #000000,
-    0 0 10px #ffdf20;
+    0 0 10px #ffd700;
 }
 
 #start-button {
