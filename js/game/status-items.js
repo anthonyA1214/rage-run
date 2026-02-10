@@ -20,7 +20,7 @@ function updateDeathCount() {
   deathCountElement.textContent = `${deathCount}`;
 }
 
-let timeInSeconds = 0;
+let timeInSeconds = 3;
 let timerInterval = null;
 
 // =========== TIMER ============
