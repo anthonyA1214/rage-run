@@ -35,6 +35,7 @@ const Game = {
   },
 
   togglePause() {
+    console.log("Toggling pause");
     this.isGamePaused = !this.isGamePaused;
 
     if (this.isGamePaused) {
@@ -48,6 +49,12 @@ const Game = {
 
   resetLevel() {
     let level = this.getLevel();
+    
+    if (!level) {
+      console.error("Cannot reset level: no level found at index", this.currentLevel);
+      return; // stop function to prevent crashing
+    }
+
     this.orbsCollected = 0;
 
     player.x = level.playerStart.x;
@@ -62,28 +69,28 @@ const Game = {
     updateOrbsCollected();
 
     // reset orbs
-    level.orbs.forEach((orb) => (orb.collected = false));
+    // reset orbs safely
+    if (level.orbs?.length) {
+      level.orbs.forEach((orb) => (orb.collected = false));
+    }
 
     // reset enemies
-    level.enemies.forEach((enemy) => {
-      if (enemy.type === "patrol") {
-        resetPatrol(enemy);
-      } else if (enemy.type === "chaser") {
-        resetChaser(enemy);
-      } else if (enemy.type === "charger") {
-        resetCharger(enemy);
-      } else if (enemy.type === "orbiter") {
-        resetOrbiter(enemy);
-      } else if (enemy.type === "bouncer") {
-        resetBouncer(enemy);
-      }
-    });
+    if (level.enemies?.length) {
+      level.enemies.forEach((enemy) => {
+        if (enemy.type === "patrol") resetPatrol(enemy);
+        else if (enemy.type === "chaser") resetChaser(enemy);
+        else if (enemy.type === "charger") resetCharger(enemy);
+        else if (enemy.type === "orbiter") resetOrbiter(enemy);
+        else if (enemy.type === "bouncer") resetBouncer(enemy);
+      });
+    }
   },
 
   nextLevel() {
     if (this.currentLevel < levels.length - 1) {
       this.currentLevel++;
       this.orbsCollected = 0;
+      updateOrbsCollected();
       const start = this.getLevel().playerStart;
 
       player.x = start.x;
