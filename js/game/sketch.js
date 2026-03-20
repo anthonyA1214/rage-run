@@ -1,5 +1,4 @@
 let orbCollectedSound;
-
 const basePath = location.hostname.includes("github.io") ? "/rage-run/" : "/";
 
 function preload() {
@@ -16,9 +15,7 @@ function setup() {
     level.rows * level.cellSize,
   );
   canvas.parent("container");
-
   initPlayer();
-
   startTimer();
   updateDeathCount();
   updateOrbsCollected();
@@ -28,25 +25,21 @@ function setup() {
 function draw() {
   background("#1E2939");
   noStroke();
-
   updatePlayer();
   updateEnemies();
-
   drawArena();
   drawOrbs();
   drawExit();
   drawPlayer();
   drawEnemies();
-
   checkEnemyCollision();
-  
   if (Game.isGameFinished === true) {
     showGameCompleteOverlay();
   }
 }
 
 function keyPressed() {
-  playerMovement();
+  playerKeyPressed(); // ← replaces playerMovement()
 
   if (!Game.isGameFinished) {
     if (keyCode === ESCAPE) {
@@ -54,4 +47,8 @@ function keyPressed() {
       return;
     }
   }
+}
+
+function keyReleased() {
+  playerKeyReleased(); // ← new, needed to stop movement on key up
 }

@@ -49,9 +49,12 @@ const Game = {
 
   resetLevel() {
     let level = this.getLevel();
-    
+
     if (!level) {
-      console.error("Cannot reset level: no level found at index", this.currentLevel);
+      console.error(
+        "Cannot reset level: no level found at index",
+        this.currentLevel,
+      );
       return; // stop function to prevent crashing
     }
 

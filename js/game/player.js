@@ -1,101 +1,82 @@
 let player;
-let playerMoving = false;
-let movementProgress = 0;
-let movementSpeed = 0.25; // Adjust this value to make movement faster or slower
-let targetX, targetY;
+let velX = 0;
+let velY = 0;
+const SPEED = 0.1;
 
 function initPlayer() {
   const start = Game.getLevel().playerStart;
   player = { x: start.x, y: start.y };
-  targetX = player.x;
-  targetY = player.y;
 }
 
 function updatePlayer() {
-  if (playerMoving) {
-    movementProgress += movementSpeed;
-    
-    if (movementProgress >= 1) {
-      player.x = targetX;
-      player.y = targetY;
-      playerMoving = false;
-      movementProgress = 0;
+  velX = 0;
+  velY = 0;
 
-      checkOrbCollection();
-      checkExit();
-      checkEnemyCollision();
-    }
+  if (keyIsDown(87) || keyIsDown(UP_ARROW)) velY = -SPEED; // W or ↑
+  if (keyIsDown(83) || keyIsDown(DOWN_ARROW)) velY = SPEED; // S or ↓
+  if (keyIsDown(65) || keyIsDown(LEFT_ARROW)) velX = -SPEED; // A or ←
+  if (keyIsDown(68) || keyIsDown(RIGHT_ARROW)) velX = SPEED; // D or →
+
+  // Normalize diagonal speed
+  if (velX !== 0 && velY !== 0) {
+    velX *= 0.7071;
+    velY *= 0.7071;
   }
+
+  // Slide-along-wall collision: try each axis independently
+  if (!collidesWithWall(player.x + velX, player.y)) player.x += velX;
+  if (!collidesWithWall(player.x, player.y + velY)) player.y += velY;
+
+  // Clamp inside grid just in case
+  player.x = constrain(player.x, 0, Game.getCols() - 1);
+  player.y = constrain(player.y, 0, Game.getRows() - 1);
+
+  checkOrbCollection();
+  checkExit();
+  checkEnemyCollision();
+}
+
+function collidesWithWall(px, py) {
+  const level = Game.getLevel();
+  const radiusCells = (level.cellSize * 0.7) / 2 / level.cellSize;
+  const centerX = px + 0.5;
+  const centerY = py + 0.5;
+
+  const testPoints = [
+    [centerX - radiusCells, centerY], // left
+    [centerX + radiusCells, centerY], // right
+    [centerX, centerY - radiusCells], // top
+    [centerX, centerY + radiusCells], // bottom
+    [centerX - radiusCells, centerY - radiusCells], // top-left
+    [centerX + radiusCells, centerY - radiusCells], // top-right
+    [centerX - radiusCells, centerY + radiusCells], // bottom-left
+    [centerX + radiusCells, centerY + radiusCells], // bottom-right
+  ];
+
+  for (const [x, y] of testPoints) {
+    const col = Math.floor(x);
+    const row = Math.floor(y);
+    if (col < 0 || col >= Game.getCols() || row < 0 || row >= Game.getRows())
+      return true;
+    if (level.arena[row * Game.getCols() + col] === 1) return true;
+  }
+  return false;
 }
 
 function drawPlayer() {
-  fill('#00BEDA');
-  
-  let level = Game.getLevel();
+  const level = Game.getLevel();
+  const centerX = player.x * level.cellSize + level.cellSize / 2;
+  const centerY = player.y * level.cellSize + level.cellSize / 2;
+  const size = level.cellSize * 0.55;
+  const radius = size * 0.3;
 
-  let currentX = player.x;
-  let currentY = player.y;
-  
-  if (playerMoving) {
-    let t = easeInOutQuad(movementProgress);
-    currentX = player.x + (targetX - player.x) * t;
-    currentY = player.y + (targetY - player.y) * t;
-  }
-
-  // Draw circle in center of cell
-  let centerX = currentX * level.cellSize + level.cellSize / 2;
-  let centerY = currentY * level.cellSize + level.cellSize / 2;
-  let size = level.cellSize * 0.55; // 55% of cell size
-  let radius = size * 0.3;
-
+  fill("#00BEDA");
   drawingContext.shadowBlur = 20;
-  drawingContext.shadowColor = '#00BEDA';
-  
+  drawingContext.shadowColor = "#00BEDA";
   rect(centerX - size / 2, centerY - size / 2, size, size, radius);
-
   drawingContext.shadowBlur = 0;
 }
 
-function easeInOutQuad(t) {
-  return t < 0.5 ? 2 * t * t : -1 + (4 - 2 * t) * t;
-}
-
-function playerMovement() {
-  if (playerMoving) return;
-
-  let newX = player.x;
-  let newY = player.y;
-  
-  // WASD movement and arrow keys
-  if (key === 'w' || key === 'W' || keyCode === UP_ARROW) {
-    newY -= 1;
-  } else if (key === 's' || key === 'S' || keyCode === DOWN_ARROW) {
-    newY += 1;
-  } else if (key === 'a' || key === 'A' || keyCode === LEFT_ARROW) {
-    newX -= 1;
-  } else if (key === 'd' || key === 'D' || keyCode === RIGHT_ARROW) {
-    newX += 1;
-  }
-  
-  // Check collision before moving
-  if (!isWall(newX, newY)) {
-    targetX = newX;
-    targetY = newY;
-
-    playerMoving = true;
-    movementProgress = 0;
-  }
-}
-
-function isWall(x, y) {
-  let level = Game.getLevel();
-  let index = y * Game.getCols() + x;
-  
-  // Check bounds
-  if (x < 0 || x >= Game.getCols() || y < 0 || y >= Game.getRows()) {
-    return true;
-  }
-  
-  // Check if there's a wall at this position
-  return level.arena[index] === 1;
+function playerKeyPressed() {
+  // Still needed for non-movement keys (pause etc.) — movement is handled by keyIsDown
 }

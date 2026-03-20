@@ -5,11 +5,16 @@ function drawArena() {
     if (level.arena[i] === 1) {
       let x = i % level.cols;
       let y = floor(i / level.cols);
-      
-      fill('#3F4A5B');
-      stroke('#000000');
+
+      fill("#3F4A5B");
+      stroke("#000000");
       strokeWeight(1.5);
-      rect(x * level.cellSize, y * level.cellSize, level.cellSize, level.cellSize);
+      rect(
+        x * level.cellSize,
+        y * level.cellSize,
+        level.cellSize,
+        level.cellSize,
+      );
     }
   }
 }
