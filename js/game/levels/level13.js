@@ -1,8 +1,8 @@
 const level13 = {
   cols: 11,
-  rows: 20, 
+  rows: 20,
   cellSize: 40,
-  
+  // prettier-ignore
   arena: [
     1,1,1,1,1,1,1,1,1,1,1,
     1,0,0,0,0,0,0,0,0,0,1,
@@ -25,11 +25,8 @@ const level13 = {
     1,0,0,0,0,0,0,0,0,0,1,
     1,1,1,1,1,1,1,1,1,1,1,
   ],
-
   playerStart: { x: 1, y: 1 },
-
   exit: { x: 9, y: 18 },
-
   orbs: [
     { x: 5, y: 3 },
     { x: 7, y: 6 },
@@ -37,77 +34,48 @@ const level13 = {
     { x: 6, y: 16 },
     { x: 5, y: 8 },
   ],
-
   enemies: [
     {
-      type: 'charger',
+      type: "charger",
       start: { x: 5, y: 6 },
       x: 5,
       y: 6,
-      speed: 155,
-      cooldownDuration: 1000,
-      teleportInterval: 2700,
-      aimDuration: 700
-    },
-    {
-      type: 'charger',
-      start: { x: 5, y: 11 },
-      x: 5,
-      y: 11,
-      speed: 150,
+      speed: 140,
       cooldownDuration: 1100,
       teleportInterval: 2900,
-      aimDuration: 750
+      aimDuration: 750,
     },
     {
-      type: 'charger',
-      start: { x: 5, y: 16 },
+      type: "charger",
+      start: { x: 5, y: 14 },
       x: 5,
-      y: 16,
-      speed: 145,
-      cooldownDuration: 1110,
+      y: 14,
+      speed: 135,
+      cooldownDuration: 1150,
       teleportInterval: 3100,
-      aimDuration: 800
+      aimDuration: 800,
     },
     {
-      type: 'chaser',
+      type: "chaser",
       start: { x: 9, y: 1 },
       x: 9,
       y: 1,
-      speed: 28,
+      speed: 22,
     },
     {
-      type: 'chaser',
+      type: "chaser",
       start: { x: 1, y: 18 },
       x: 1,
       y: 18,
-      speed: 26,
+      speed: 20,
     },
     {
-      type: 'patrol',
-      direction: { x: 0, y: 1 },
-      start: { x: 5, y: 1 },
-      end: { x: 5, y: 3 },
-      x: 5,
-      y: 1,
-      speed: 45,
-    },
-    {
-      type: 'patrol',
+      type: "patrol",
       direction: { x: 1, y: 0 },
       start: { x: 1, y: 8 },
       end: { x: 9, y: 8 },
       x: 1,
       y: 8,
-      speed: 70,
-    },
-    {
-      type: 'patrol',
-      direction: { x: 0, y: -1 },
-      start: { x: 5, y: 18 },
-      end: { x: 5, y: 16 },
-      x: 5,
-      y: 18,
       speed: 45,
     },
   ],

@@ -76,7 +76,3 @@ function drawPlayer() {
   rect(centerX - size / 2, centerY - size / 2, size, size, radius);
   drawingContext.shadowBlur = 0;
 }
-
-function playerKeyPressed() {
-  // Still needed for non-movement keys (pause etc.) — movement is handled by keyIsDown
-}

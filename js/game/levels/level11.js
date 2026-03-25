@@ -2,7 +2,7 @@ const level11 = {
   cols: 15,
   rows: 15,
   cellSize: 40,
-  
+  // prettier-ignore
   arena: [
     1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,
     1,0,0,0,0,0,0,0,0,0,0,0,0,0,1,
@@ -20,52 +20,39 @@ const level11 = {
     1,0,0,0,0,0,0,0,0,0,0,0,0,0,1,
     1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,
   ],
-
   playerStart: { x: 1, y: 1 },
-
   exit: { x: 13, y: 13 },
-
   orbs: [
     { x: 7, y: 3 },
     { x: 11, y: 7 },
     { x: 3, y: 11 },
   ],
-
   enemies: [
     {
-      type: 'charger',
+      type: "charger",
       start: { x: 7, y: 7 },
       x: 7,
       y: 7,
-      speed: 140,
-      cooldownDuration: 1000,
-      teleportInterval: 3200,
-      aimDuration: 800
+      speed: 130,
+      cooldownDuration: 1200,
+      teleportInterval: 3500,
+      aimDuration: 900,
     },
     {
-      type: 'chaser',
+      type: "chaser",
       start: { x: 13, y: 1 },
       x: 13,
       y: 1,
-      speed: 24,
+      speed: 20,
     },
     {
-      type: 'patrol',
+      type: "patrol",
       direction: { x: 1, y: 0 },
       start: { x: 1, y: 7 },
       end: { x: 13, y: 7 },
       x: 1,
       y: 7,
-      speed: 38,
-    },
-    {
-      type: 'patrol',
-      direction: { x: 0, y: 1 },
-      start: { x: 7, y: 1 },
-      end: { x: 7, y: 13 },
-      x: 7,
-      y: 1,
-      speed: 36,
+      speed: 35,
     },
   ],
 };

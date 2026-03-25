@@ -2,7 +2,7 @@ const level6 = {
   cols: 16,
   rows: 9,
   cellSize: 40,
-  
+  // prettier-ignore
   arena: [
     1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,
     1,0,0,0,0,1,0,0,0,0,1,0,0,0,0,1,
@@ -14,25 +14,21 @@ const level6 = {
     1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,
     1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,
   ],
-
   playerStart: { x: 1, y: 1 },
-
   exit: { x: 14, y: 7 },
-
   orbs: [
     { x: 3, y: 3 },
     { x: 10, y: 3 },
     { x: 5, y: 5 },
     { x: 12, y: 7 },
   ],
-
   enemies: [
     {
-      type: 'chaser',
-      start: { x: 14, y: 7 },
-      x: 14,
-      y: 7,
-      speed: 30  // chasers move slower
+      type: "chaser",
+      start: { x: 7, y: 4 },
+      x: 7,
+      y: 4,
+      speed: 15,
     },
   ],
 };

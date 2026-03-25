@@ -2,7 +2,7 @@ const level9 = {
   cols: 10,
   rows: 15,
   cellSize: 40,
-  
+  // prettier-ignore
   arena: [
     1,1,1,1,1,1,1,1,1,1,
     1,0,0,0,0,0,0,0,0,1,
@@ -20,57 +20,53 @@ const level9 = {
     1,0,1,0,0,0,0,1,0,1,
     1,1,1,1,1,1,1,1,1,1,
   ],
-
   playerStart: { x: 1, y: 1 },
-
   exit: { x: 8, y: 13 },
-
   orbs: [
     { x: 4, y: 2 },
     { x: 7, y: 4 },
     { x: 2, y: 9 },
     { x: 6, y: 12 },
   ],
-
   enemies: [
     {
-      type: 'chaser',
+      type: "chaser",
       start: { x: 8, y: 1 },
       x: 8,
       y: 1,
-      speed: 20,
+      speed: 15,
     },
     {
-      type: 'chaser',
+      type: "chaser",
       start: { x: 1, y: 13 },
       x: 1,
       y: 13,
-      speed: 22,
+      speed: 16,
     },
     {
-      type: 'chaser',
-      start: { x: 8, y: 9 },
-      x: 8,
+      type: "chaser",
+      start: { x: 7, y: 9 },
+      x: 7,
       y: 9,
-      speed: 18,
+      speed: 14,
     },
     {
-      type: 'patrol',
+      type: "patrol",
       direction: { x: -1, y: 0 },
-      start: { x: 8, y: 9 },
+      start: { x: 7, y: 9 },
       end: { x: 1, y: 9 },
-      x: 8,
+      x: 7,
       y: 9,
-      speed: 40,
+      speed: 35,
     },
     {
-      type: 'patrol',
+      type: "patrol",
       direction: { x: 1, y: 0 },
       start: { x: 3, y: 6 },
       end: { x: 6, y: 6 },
       x: 3,
       y: 6,
-      speed: 35,
+      speed: 30,
     },
   ],
 };

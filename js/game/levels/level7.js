@@ -2,7 +2,7 @@ const level7 = {
   cols: 7,
   rows: 15,
   cellSize: 40,
-  
+  // prettier-ignore
   arena: [
     1,1,1,1,1,1,1,
     1,0,0,0,0,0,1,
@@ -20,33 +20,29 @@ const level7 = {
     1,0,0,0,0,0,1,
     1,1,1,1,1,1,1,
   ],
-
   playerStart: { x: 1, y: 1 },
-
   exit: { x: 5, y: 13 },
-
   orbs: [
     { x: 3, y: 3 },
     { x: 5, y: 5 },
     { x: 1, y: 11 },
   ],
-
   enemies: [
     {
-      type: 'chaser',
+      type: "chaser",
       start: { x: 5, y: 1 },
       x: 5,
       y: 1,
-      speed: 20,
+      speed: 18,
     },
     {
-      type: 'patrol',
+      type: "patrol",
       direction: { x: 0, y: 1 },
       start: { x: 3, y: 5 },
       end: { x: 3, y: 11 },
       x: 3,
       y: 5,
-      speed: 40,
+      speed: 35,
     },
   ],
 };

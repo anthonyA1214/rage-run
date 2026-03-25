@@ -26,7 +26,7 @@ function drawExit() {
 
     // Pulsing glow between 20 → 50
     let glow = 35 + sin(millis() / 300) * 15;
-    // Explanation: 35 ± 15 → 20 → 50
+    // Explanation: 35 +/- 15 → 20 → 50
     drawingContext.shadowBlur = glow;
     drawingContext.shadowColor = "#96FF96";
 

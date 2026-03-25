@@ -3,6 +3,7 @@ const level1 = {
   rows: 11,
   cellSize: 40,
 
+  // prettier-ignore
   arena: [
     1,1,1,1,1,1,1,1,1,1,1,
     1,0,0,0,0,0,0,0,0,0,1,
@@ -17,13 +18,17 @@ const level1 = {
     1,1,1,1,1,1,1,1,1,1,1,
   ],
 
-  playerStart: { x: 9, y: 9 },
+  // approved: move player start off the exit so the level is a meaningful intro
+  playerStart: {
+    x: 1,
+    y: 1,
+  },
 
   exit: { x: 9, y: 9 },
-  
+
   orbs: [
     { x: 3, y: 3 },
     { x: 3, y: 7 },
-    { x: 7, y: 3 }
+    { x: 7, y: 3 },
   ],
-}
+};

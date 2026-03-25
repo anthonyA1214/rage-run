@@ -39,16 +39,10 @@ function draw() {
 }
 
 function keyPressed() {
-  playerKeyPressed(); // ← replaces playerMovement()
-
   if (!Game.isGameFinished) {
     if (keyCode === ESCAPE) {
       Game.togglePause();
       return;
     }
   }
-}
-
-function keyReleased() {
-  playerKeyReleased(); // ← new, needed to stop movement on key up
 }
