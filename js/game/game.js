@@ -1,5 +1,5 @@
 const Game = {
-  currentLevel: 21,
+  currentLevel: 0,
   isGameStarted: false,
   deathCount: 0,
   orbsCollected: 0,
